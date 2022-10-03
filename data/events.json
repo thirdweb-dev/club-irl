@@ -1,0 +1,30 @@
+[
+  {
+    "name": "San Francisco",
+    "location": "General's Residence",
+    "image": "https://content.r9cdn.net/rimg/dimg/69/1b/cca1e76b-city-13852-16eeb19be6a.jpg?width=1750&height=1000&xhint=1566&yhint=1117&crop=true",
+    "date": "August 31, 2022",
+    "link": "https://lu.ma/twdinner"
+  },
+  {
+    "name": "Manhattan",
+    "location": "2 Marina Blvd, New York",
+    "image": "https://www.travelandleisure.com/thmb/JWO4CNVDNSR-aLDBT93jVlHV1DQ=/1800x1200/filters:fill(auto,1)/new-york-city-evening-NYCTG0221-52492d6ccab44f328a1c89f41ac02aea.jpg",
+    "date": "August 31, 2022",
+    "link": "https://lu.ma/twdinner"
+  },
+  {
+    "name": "Singapore",
+    "location": "69 Example Lane, LA",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/2/2e/Singapore_Skyline_2019-10.jpg",
+    "date": "August 31, 2022",
+    "link": "https://lu.ma/twdinner"
+  },
+  {
+    "name": "Los Angelos",
+    "location": "69 Example Lane, LA",
+    "image": "https://cdn.britannica.com/40/94540-050-789B2064/Palm-trees-skyline-Los-Angeles-background.jpg",
+    "date": "August 31, 2022",
+    "link": "https://lu.ma/twdinner"
+  }
+]
