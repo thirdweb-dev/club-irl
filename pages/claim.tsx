@@ -1,18 +1,41 @@
-import { Center, Heading, Flex, Text, Link } from "@chakra-ui/react";
-import { useAddress, useEditionDrop, useNFTBalance } from "@thirdweb-dev/react";
+import {
+  Button,
+  Flex,
+  Heading,
+  NumberDecrementStepper,
+  NumberIncrementStepper,
+  NumberInput,
+  NumberInputField,
+  NumberInputStepper,
+  Text,
+  VStack,
+} from "@chakra-ui/react";
+import {
+  ConnectWallet,
+  useAddress,
+  useEditionDrop,
+  useNFTBalance,
+  useTotalCirculatingSupply,
+} from "@thirdweb-dev/react";
 import { ThirdwebSDK } from "@thirdweb-dev/sdk";
 import { useRouter } from "next/router";
 import { GetServerSidePropsContext } from "next/types";
-import { useEffect } from "react";
+import React, { useState } from "react";
 import { getUser } from "../auth.config";
+import { VIPIcon } from "../Icons/VIP";
+import MainLayout from "../Layouts/MainLayout";
 
 const Claim: React.FC = () => {
   const address = useAddress();
   const contract = useEditionDrop(
     process.env.NEXT_PUBLIC_THIRDWEB_CONTRACT_ADDRESS || ""
   );
+  const tokenId = 0;
+  const { data: claimedSupply } = useTotalCirculatingSupply(contract, tokenId);
+
   const { data: balance } = useNFTBalance(contract, address, "0");
   const router = useRouter();
+  const [amount, setAmount] = useState(0);
 
   useEffect(() => {
     if (balance?.gt(0)) {
@@ -21,33 +44,70 @@ const Claim: React.FC = () => {
   }, [balance, router]);
 
   return (
-    <Center width="100vw" height="100vh" bg="black">
-      <Flex direction="column" align="center">
-        <Heading>Claim Membership</Heading>
-        <Text maxW="600px" textAlign="center" mb="32px">
-          Congratulations, you have been invited to join Club IRL.
-          <br />
-          You can claim your membership below.
-          <br />
-          <br />
-          Once you claim, you can continue to the{" "}
-          <Link href="/" fontWeight="bold">
-            home page
-          </Link>{" "}
-          where you can login in with your wallet to access the private
-          community.
-        </Text>
-        <iframe
-          src="https://gateway.ipfscdn.io/ipfs/QmPaVYdGue8zEXFKqrtVHpvzBvufM1DYzw5n1of3KVPG88/edition-drop.html?contract=0x218181d6Ad4f753dBd13e735f8523a819eCB696f&chainId=5&tokenId=0&theme=dark"
-          width="600px"
-          height="600px"
-          style={{
-            maxWidth: "100%",
-          }}
-          frameBorder="0"
-        ></iframe>
+    <MainLayout showNav>
+      <Flex
+        direction="column"
+        align="center"
+        h="100vh"
+        w="100vw"
+        justify="center"
+      >
+        <VStack
+          bg="rgba(0, 0, 0, 0.9)"
+          filter="drop-shadow(0px 0px 50px #8B38FF)"
+          maxW="580px"
+          align="center"
+          justify="center"
+          p={10}
+          rounded="xl"
+        >
+          <Heading
+            fontWeight="500"
+            fontSize="32px"
+            color="#FF84D4"
+            textShadow="0px 4px 10px rgba(0, 0, 0, 0.25), 0px 0px 15px rgba(255, 71, 191, 0.9)"
+          >
+            Claim your membership
+          </Heading>
+          <Text textAlign="center">
+            You have been invited to join Club IRL. You can claim your
+            membership below. Once you’ve done that, you can login with your
+            wallet to access the private community.
+          </Text>
+          <ConnectWallet />
+          <Flex gap={4}>
+            <NumberInput
+              defaultValue={1}
+              min={1}
+              maxW="70px"
+              borderColor="#4B3678"
+            >
+              <NumberInputField
+                value={amount}
+                onChange={(e) => setAmount(parseInt(e.target.value))}
+              />
+              <NumberInputStepper borderColor="#4B3678">
+                <NumberIncrementStepper
+                  borderBottom="none"
+                  borderColor="#4B3678"
+                />
+                <NumberDecrementStepper
+                  borderTop="none"
+                  borderColor="#4B3678"
+                />
+              </NumberInputStepper>
+            </NumberInput>
+            <Button gap="2" bg="transparent" border="1px solid #F213A4">
+              <VIPIcon />
+              <Text>Mint (FREE)</Text>
+            </Button>
+          </Flex>
+          {claimedSupply && (
+            <Text color="#AC46FF">{claimedSupply?.toString()} Minted</Text>
+          )}
+        </VStack>
       </Flex>
-    </Center>
+    </MainLayout>
   );
 };
 
@@ -74,14 +134,14 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   const balance = await contract.balanceOf(user.address, 0);
   const hasNft = balance.gt(0);
 
-  if (hasNft) {
-    return {
-      redirect: {
-        destination: "/",
-        permanent: false,
-      },
-    };
-  }
+  // if (hasNft) {
+  //   return {
+  //     redirect: {
+  //       destination: "/",
+  //       permanent: false,
+  //     },
+  //   };
+  // }
 
   const canClaim = await contract.claimConditions.canClaim(0, 1, user.address);
 

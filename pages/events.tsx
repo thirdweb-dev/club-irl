@@ -3,17 +3,13 @@ import {
   Container,
   Flex,
   Heading,
-  HStack,
-  Icon,
   Image,
   Link,
-  Stack,
   Text,
   VStack,
 } from "@chakra-ui/react";
 import { ThirdwebSDK } from "@thirdweb-dev/sdk";
 import { GetServerSidePropsContext } from "next";
-import { IoIosPin } from "react-icons/io";
 import { getUser } from "../auth.config";
 import events from "../data/events.json";
 import MainLayout from "../Layouts/MainLayout";
