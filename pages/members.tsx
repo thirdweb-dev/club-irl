@@ -8,6 +8,7 @@ import {
 } from "@chakra-ui/react";
 import { ThirdwebSDK } from "@thirdweb-dev/sdk";
 import { GetServerSidePropsContext } from "next";
+import Link from "next/link";
 import { getUser } from "../auth.config";
 import MainLayout from "../Layouts/MainLayout";
 
@@ -31,20 +32,23 @@ const Members: React.FC = () => {
           condimentum enim ut ultrices.
         </Text>
         <Flex w="full" align="center" justify="space-between">
-          <VStack
-            mt="24px"
-            spacing="24px"
-            bg="rgba(0, 0, 0, 0.9)"
-            boxShadow="0px 0px 50px #8B38FF"
-            borderRadius="28px"
-            align="center"
-            justify="center"
-            w="200px"
-            h="200px"
-          >
-            <Image src="/assets/icons/calendar.svg" alt="calendar" w="60px" />
-            <Text>View events</Text>
-          </VStack>
+          <Link href="/events" passHref>
+            <VStack
+              mt="24px"
+              spacing="24px"
+              bg="rgba(0, 0, 0, 0.9)"
+              boxShadow="0px 0px 50px #8B38FF"
+              borderRadius="28px"
+              align="center"
+              justify="center"
+              w="200px"
+              h="200px"
+            >
+              <Image src="/assets/icons/calendar.svg" alt="calendar" w="60px" />
+              <Text>View events</Text>
+            </VStack>
+          </Link>
+
           <VStack
             mt="24px"
             spacing="24px"
@@ -96,7 +100,6 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   const user = await getUser(context.req);
 
   if (!user) {
-    console.log("No user");
     return {
       redirect: {
         destination: "/",

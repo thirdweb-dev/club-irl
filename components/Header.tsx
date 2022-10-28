@@ -1,5 +1,6 @@
 import { Box, Flex, Text } from "@chakra-ui/react";
 import Image from "next/image";
+import Link from "next/link";
 import type { FC } from "react";
 import { CalendarIcon, UserIcon } from "../Icons";
 
@@ -20,27 +21,30 @@ export const Header: FC<IHeaderProps> = ({ showNav }) => {
           h={12}
           gap={8}
         >
-          <Flex align="center" gap={2}>
+          <Flex align="center" gap={2} cursor="pointer">
             <UserIcon />
             <Text>Membership</Text>
           </Flex>
-
-          <Flex align="center" gap={2}>
-            <CalendarIcon />
-            <Text>Events</Text>
-          </Flex>
+          <Link href="/events" passHref>
+            <Flex align="center" gap={2} cursor="pointer">
+              <CalendarIcon />
+              <Text>Events</Text>
+            </Flex>
+          </Link>
         </Flex>
       )}
-      <Image
-        src="/assets/logo.svg"
-        alt=""
-        width={230}
-        height={150}
-        style={{
-          objectFit: "cover",
-          margin: "60px",
-        }}
-      />
+      <Link href="/">
+        <Image
+          src="/assets/logo.svg"
+          alt=""
+          width={230}
+          height={150}
+          style={{
+            objectFit: "cover",
+            margin: "60px",
+          }}
+        />
+      </Link>
     </Box>
   );
 };

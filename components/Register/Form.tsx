@@ -5,18 +5,46 @@ import {
   Heading,
   Text,
   VStack,
+  FormControl,
 } from "@chakra-ui/react";
+import { FC } from "react";
+import {
+  ErrorOption,
+  FieldErrors,
+  UseFormHandleSubmit,
+  UseFormRegister,
+} from "react-hook-form";
+import { IFormData } from "../../types/IFormData";
 import { FormInput } from "./FormInput";
 
-export const Form = () => {
+interface IFormDataProps {
+  register: UseFormRegister<IFormData>;
+  handleSubmit: UseFormHandleSubmit<IFormData>;
+  errors: FieldErrors<IFormData>;
+}
+
+export const Form: FC<IFormDataProps> = ({
+  register,
+  handleSubmit,
+  errors,
+}) => {
+  const onSubmit = (data: IFormData) => {
+    console.log(data);
+  };
+
   return (
-    <VStack
+    <FormControl
+      display="flex"
+      flexDir="column"
       bg="black"
       boxShadow="0px 0px 50px #8B38FF"
       rounded="xl"
       w="570px"
       textAlign="center"
+      alignItems="center"
+      justifyContent="center"
       p={16}
+      onSubmit={handleSubmit(onSubmit)}
     >
       <Heading
         fontWeight="500"
@@ -31,9 +59,25 @@ export const Form = () => {
         quis urna eget convallis. Cras orci enim, mattis eu purus sit amet,
         gravida pharetra lorem. Fusce porta sed mi quis pharetra.
       </Text>
-      <FormInput placeholder="Your name:" />
-      <FormInput placeholder="Your email:" />
-      <FormInput placeholder="Your address:" />
+      <FormInput
+        placeholder="Your name:"
+        register={register}
+        id="name"
+        error={errors.name}
+      />
+      <FormInput
+        placeholder="Your email:"
+        register={register}
+        id="email"
+        error={errors.email}
+      />
+
+      <FormInput
+        placeholder="Your address:"
+        register={register}
+        id="address"
+        error={errors.address}
+      />
       <Flex gap={2}>
         <Checkbox
           colorScheme="purple"
@@ -60,6 +104,8 @@ export const Form = () => {
         w="146px"
         h="53px"
         mt="4 !important"
+        type="submit"
+        onClick={handleSubmit(onSubmit)}
       >
         <Text
           bg="linear-gradient(93.33deg, #F213A4 1.94%, #7A66FF 100%)"
@@ -69,6 +115,6 @@ export const Form = () => {
           Register
         </Text>
       </Button>
-    </VStack>
+    </FormControl>
   );
 };

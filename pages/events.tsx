@@ -99,7 +99,6 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   const user = await getUser(context.req);
 
   if (!user) {
-    console.log("No user");
     return {
       redirect: {
         destination: "/",

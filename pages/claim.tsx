@@ -20,7 +20,7 @@ import {
 import { ThirdwebSDK } from "@thirdweb-dev/sdk";
 import { useRouter } from "next/router";
 import { GetServerSidePropsContext } from "next/types";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { getUser } from "../auth.config";
 import { VIPIcon } from "../Icons/VIP";
 import MainLayout from "../Layouts/MainLayout";
@@ -74,7 +74,7 @@ const Claim: React.FC = () => {
             membership below. Once you’ve done that, you can login with your
             wallet to access the private community.
           </Text>
-          <ConnectWallet />
+          <ConnectWallet className="connect-wallet" />
           <Flex gap={4}>
             <NumberInput
               defaultValue={1}
@@ -134,14 +134,14 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   const balance = await contract.balanceOf(user.address, 0);
   const hasNft = balance.gt(0);
 
-  // if (hasNft) {
-  //   return {
-  //     redirect: {
-  //       destination: "/",
-  //       permanent: false,
-  //     },
-  //   };
-  // }
+  if (hasNft) {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
+  }
 
   const canClaim = await contract.claimConditions.canClaim(0, 1, user.address);
 
