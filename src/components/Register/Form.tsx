@@ -2,34 +2,56 @@ import {
   Button,
   Checkbox,
   Flex,
+  FormControl,
   Heading,
   Text,
-  VStack,
-  FormControl,
+  useToast,
 } from "@chakra-ui/react";
-import { FC } from "react";
+import axios from "axios";
+import { FC, useState } from "react";
 import {
-  ErrorOption,
   FieldErrors,
   UseFormHandleSubmit,
   UseFormRegister,
 } from "react-hook-form";
-import { IFormData } from "../../types/IFormData";
+import { IFormData } from "types/IFormData";
 import { FormInput } from "./FormInput";
 
 interface IFormDataProps {
   register: UseFormRegister<IFormData>;
   handleSubmit: UseFormHandleSubmit<IFormData>;
   errors: FieldErrors<IFormData>;
+  setIsSubmitted: (value: boolean) => void;
 }
 
 export const Form: FC<IFormDataProps> = ({
   register,
   handleSubmit,
   errors,
+  setIsSubmitted,
 }) => {
-  const onSubmit = (data: IFormData) => {
-    console.log(data);
+  const toast = useToast();
+  const [isAccepted, setIsAccepted] = useState(false);
+  const onSubmit = async (data: IFormData) => {
+    try {
+      await axios.post("/api/user", data);
+      toast({
+        title: "Success",
+        description: "You have been registered",
+        status: "success",
+        duration: 5000,
+        isClosable: true,
+      });
+      setIsSubmitted(true);
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: (error as any).response.data.error,
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+      });
+    }
   };
 
   return (
@@ -85,6 +107,7 @@ export const Form: FC<IFormDataProps> = ({
           _checked={{
             borderColor: "#9A66FF",
           }}
+          onChange={(e) => setIsAccepted(e.target.checked)}
         />
         <Text
           color="#9A66FF"
@@ -106,6 +129,7 @@ export const Form: FC<IFormDataProps> = ({
         mt="4 !important"
         type="submit"
         onClick={handleSubmit(onSubmit)}
+        disabled={!isAccepted}
       >
         <Text
           bg="linear-gradient(93.33deg, #F213A4 1.94%, #7A66FF 100%)"

@@ -9,7 +9,7 @@ import {
 import { ThirdwebSDK } from "@thirdweb-dev/sdk";
 import { GetServerSidePropsContext } from "next";
 import Link from "next/link";
-import { getUser } from "../auth.config";
+import { getUser } from "../../auth.config";
 import MainLayout from "../Layouts/MainLayout";
 
 const Members: React.FC = () => {
@@ -49,20 +49,22 @@ const Members: React.FC = () => {
             </VStack>
           </Link>
 
-          <VStack
-            mt="24px"
-            spacing="24px"
-            bg="rgba(0, 0, 0, 0.9)"
-            boxShadow="0px 0px 50px #8B38FF"
-            borderRadius="28px"
-            align="center"
-            justify="center"
-            w="200px"
-            h="200px"
-          >
-            <Image src="/assets/icons/cog.svg" alt="calendar" w="60px" />
-            <Text>Update profile</Text>
-          </VStack>
+          <Link href="/profile" passHref>
+            <VStack
+              mt="24px"
+              spacing="24px"
+              bg="rgba(0, 0, 0, 0.9)"
+              boxShadow="0px 0px 50px #8B38FF"
+              borderRadius="28px"
+              align="center"
+              justify="center"
+              w="200px"
+              h="200px"
+            >
+              <Image src="/assets/icons/cog.svg" alt="calendar" w="60px" />
+              <Text>Update profile</Text>
+            </VStack>
+          </Link>
         </Flex>
         <Flex
           w="full"
@@ -113,8 +115,9 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     "goerli"
   );
 
-  const contract = await sdk.getEditionDrop(
-    process.env.NEXT_PUBLIC_THIRDWEB_CONTRACT_ADDRESS || ""
+  const contract = await sdk.getContract(
+    process.env.NEXT_PUBLIC_THIRDWEB_CONTRACT_ADDRESS || "",
+    "edition-drop"
   );
   const balance = await contract.balanceOf(user.address, 0);
   const hasNft = balance.gt(0);

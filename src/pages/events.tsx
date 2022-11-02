@@ -10,8 +10,8 @@ import {
 } from "@chakra-ui/react";
 import { ThirdwebSDK } from "@thirdweb-dev/sdk";
 import { GetServerSidePropsContext } from "next";
-import { getUser } from "../auth.config";
-import events from "../data/events.json";
+import { getUser } from "../../auth.config";
+import events from "../../data/events.json";
 import MainLayout from "../Layouts/MainLayout";
 
 const Members: React.FC = () => {

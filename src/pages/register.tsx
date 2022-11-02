@@ -3,7 +3,8 @@ import type { NextPage } from "next";
 import { useForm } from "react-hook-form";
 import { Form } from "../components/Register/Form";
 import MainLayout from "../Layouts/MainLayout";
-import { IFormData } from "../types/IFormData";
+import { IFormData } from "../../types/IFormData";
+import { useState } from "react";
 
 const Register: NextPage = () => {
   const defaultValues = {
@@ -14,16 +15,16 @@ const Register: NextPage = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitted },
+    formState: { errors },
   } = useForm<IFormData>({
     defaultValues,
   });
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   return (
     <MainLayout>
       <Flex w="full" align="center" justify="center" h="100vh">
-        {/* {isSubmitted && !errors.address && !errors.email && !errors.name ? ( */}
-        {true ? (
+        {isSubmitted ? (
           <VStack maxW="442px">
             <Heading
               fontWeight="500"
@@ -51,6 +52,7 @@ const Register: NextPage = () => {
             register={register}
             handleSubmit={handleSubmit}
             errors={errors}
+            setIsSubmitted={setIsSubmitted}
           />
         )}
       </Flex>

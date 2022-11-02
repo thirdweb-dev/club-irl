@@ -13,7 +13,7 @@ import {
 import {
   ConnectWallet,
   useAddress,
-  useEditionDrop,
+  useContract,
   useNFTBalance,
   useTotalCirculatingSupply,
 } from "@thirdweb-dev/react";
@@ -21,14 +21,15 @@ import { ThirdwebSDK } from "@thirdweb-dev/sdk";
 import { useRouter } from "next/router";
 import { GetServerSidePropsContext } from "next/types";
 import React, { useEffect, useState } from "react";
-import { getUser } from "../auth.config";
+import { getUser } from "../../auth.config";
 import { VIPIcon } from "../Icons/VIP";
 import MainLayout from "../Layouts/MainLayout";
 
 const Claim: React.FC = () => {
   const address = useAddress();
-  const contract = useEditionDrop(
-    process.env.NEXT_PUBLIC_THIRDWEB_CONTRACT_ADDRESS || ""
+  const { contract } = useContract(
+    process.env.NEXT_PUBLIC_THIRDWEB_CONTRACT_ADDRESS || "",
+    "edition-drop"
   );
   const tokenId = 0;
   const { data: claimedSupply } = useTotalCirculatingSupply(contract, tokenId);
