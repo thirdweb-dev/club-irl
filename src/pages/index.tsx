@@ -1,18 +1,16 @@
 import { Nav } from "@/components/Header/Nav";
 import { ArrowsIcon } from "@/Icons";
-import { Box, Button, Flex, Icon, Link, Spinner, Text } from "@chakra-ui/react";
+import { Box, Flex, Link, Spinner, Text } from "@chakra-ui/react";
 import {
   ConnectWallet,
   useClaimIneligibilityReasons,
   useContract,
-  useDisconnect,
   useNFT,
   useNFTBalance,
   useUser,
 } from "@thirdweb-dev/react";
 import type { NextPage } from "next";
 import Image from "next/image";
-import { BsArrowRightShort } from "react-icons/bs";
 
 const Home: NextPage = () => {
   const { user } = useUser();
@@ -39,7 +37,8 @@ const Home: NextPage = () => {
         justify="center"
         height="100vh"
         width="100vw"
-        bg="url('/assets/home-bg.png')"
+        bg="url('/assets/home-bg.png') no-repeat center center"
+        bgSize="cover"
       >
         <Spinner color="white" />
       </Flex>
@@ -47,7 +46,10 @@ const Home: NextPage = () => {
   }
 
   return (
-    <Flex bg="url('/assets/home-bg.png')">
+    <Flex
+      bg="url('/assets/home-bg.png') no-repeat center center"
+      bgSize="cover"
+    >
       <Flex
         flexDirection="column"
         alignItems="center"

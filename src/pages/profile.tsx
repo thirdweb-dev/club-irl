@@ -45,7 +45,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
   if (record.length === 0) {
     return {
       redirect: {
-        destination: "/",
+        destination: "/register",
         permanent: false,
       },
     };

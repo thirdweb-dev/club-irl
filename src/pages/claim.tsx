@@ -38,11 +38,11 @@ const Claim: React.FC = () => {
   const router = useRouter();
   const [amount, setAmount] = useState(0);
 
-  // useEffect(() => {
-  //   if (balance?.gt(0)) {
-  //     router.replace("/");
-  //   }
-  // }, [balance, router]);
+  useEffect(() => {
+    if (balance?.gt(0)) {
+      router.replace("/");
+    }
+  }, [balance, router]);
 
   return (
     <MainLayout showNav>
@@ -127,52 +127,52 @@ const Claim: React.FC = () => {
   );
 };
 
-// export async function getServerSideProps(context: GetServerSidePropsContext) {
-//   const user = await getUser(context.req);
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+  const user = await getUser(context.req);
 
-//   if (!user) {
-//     return {
-//       redirect: {
-//         destination: "/",
-//         permanent: false,
-//       },
-//     };
-//   }
+  if (!user) {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
+  }
 
-//   const sdk = ThirdwebSDK.fromPrivateKey(
-//     process.env.THIRDWEB_PRIVATE_KEY || "",
-//     "goerli"
-//   );
+  const sdk = ThirdwebSDK.fromPrivateKey(
+    process.env.THIRDWEB_PRIVATE_KEY || "",
+    "goerli"
+  );
 
-//   const contract = await sdk.getEditionDrop(
-//     process.env.NEXT_PUBLIC_THIRDWEB_CONTRACT_ADDRESS || ""
-//   );
-//   const balance = await contract.balanceOf(user.address, 0);
-//   const hasNft = balance.gt(0);
+  const contract = await sdk.getEditionDrop(
+    process.env.NEXT_PUBLIC_THIRDWEB_CONTRACT_ADDRESS || ""
+  );
+  const balance = await contract.balanceOf(user.address, 0);
+  const hasNft = balance.gt(0);
 
-//   if (hasNft) {
-//     return {
-//       redirect: {
-//         destination: "/",
-//         permanent: false,
-//       },
-//     };
-//   }
+  if (hasNft) {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
+  }
 
-//   const canClaim = await contract.claimConditions.canClaim(0, 1, user.address);
+  const canClaim = await contract.claimConditions.canClaim(0, 1, user.address);
 
-//   if (!canClaim) {
-//     return {
-//       redirect: {
-//         destination: "/",
-//         permanent: false,
-//       },
-//     };
-//   }
+  if (!canClaim) {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
+  }
 
-//   return {
-//     props: {},
-//   };
-// }
+  return {
+    props: {},
+  };
+}
 
 export default Claim;

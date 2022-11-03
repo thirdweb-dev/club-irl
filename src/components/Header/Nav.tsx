@@ -17,10 +17,13 @@ export const Nav: FC = () => {
       h={12}
       gap={8}
     >
-      <Flex align="center" gap={2} cursor="pointer">
-        <UserIcon />
-        <Text>Membership</Text>
-      </Flex>
+      <Link href="/members" passHref>
+        <Flex align="center" gap={2} cursor="pointer">
+          <UserIcon />
+          <Text>Membership</Text>
+        </Flex>
+      </Link>
+
       <Link href="/events" passHref>
         <Flex align="center" gap={2} cursor="pointer">
           <CalendarIcon />

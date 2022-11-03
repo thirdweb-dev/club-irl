@@ -95,7 +95,7 @@ export const Form: FC<IFormDataProps> = ({
       />
 
       <FormInput
-        placeholder="Your address:"
+        placeholder="Your wallet address:"
         register={register}
         id="address"
         error={errors.address}
