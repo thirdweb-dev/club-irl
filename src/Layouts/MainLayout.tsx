@@ -17,6 +17,7 @@ const MainLayout: FC<IMainLayoutProps> = ({ showNav, children }) => {
       bgRepeat="no-repeat"
       bgPosition="center"
       flexDir="column"
+      py={{ base: "200px", md: "100px" }}
     >
       <Header showNav={showNav} />
       {children}

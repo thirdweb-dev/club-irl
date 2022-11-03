@@ -8,7 +8,10 @@ export const Nav: FC = () => {
     <Flex
       bg="black"
       w="100%"
-      justify="end"
+      justify={{
+        base: "center",
+        md: "end",
+      }}
       align="center"
       px={10}
       h={12}

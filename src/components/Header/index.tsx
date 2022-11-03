@@ -1,8 +1,6 @@
-import { Box, Flex, Text } from "@chakra-ui/react";
-import Image from "next/image";
+import { Box, Image } from "@chakra-ui/react";
 import Link from "next/link";
 import type { FC } from "react";
-import { CalendarIcon, UserIcon } from "../../Icons";
 import { Nav } from "./Nav";
 
 interface IHeaderProps {
@@ -19,9 +17,10 @@ export const Header: FC<IHeaderProps> = ({ showNav }) => {
           alt=""
           width={230}
           height={150}
-          style={{
-            objectFit: "cover",
-            margin: "60px",
+          objectFit="cover"
+          margin={{
+            base: "0 auto",
+            md: "60px",
           }}
         />
       </Link>

@@ -34,7 +34,14 @@ const Members: React.FC = () => {
           condimentum enim ut ultrices.
         </Text>
 
-        <Flex alignSelf="center" width="100vw" gap={10} px={20} mt={10}>
+        <Flex
+          alignSelf="center"
+          width="100vw"
+          gap={10}
+          px={20}
+          mt={10}
+          flexWrap="wrap"
+        >
           {events.map((event) => (
             <Link
               isExternal

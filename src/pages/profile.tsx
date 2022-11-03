@@ -18,7 +18,12 @@ const Register = ({ user }: any) => {
 
   return (
     <MainLayout>
-      <Flex w="full" align="center" justify="center" h="100vh">
+      <Flex
+        w="full"
+        align="center"
+        justify="center"
+        h={{ base: "auto", md: "100vh" }}
+      >
         <Form register={register} handleSubmit={handleSubmit} errors={errors} />
       </Flex>
     </MainLayout>

@@ -23,7 +23,12 @@ const Register: NextPage = () => {
 
   return (
     <MainLayout>
-      <Flex w="full" align="center" justify="center" h="100vh">
+      <Flex
+        w="full"
+        align="center"
+        justify="center"
+        h={{ base: "auto", md: "100vh" }}
+      >
         {isSubmitted ? (
           <VStack maxW="442px">
             <Heading

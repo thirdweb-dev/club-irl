@@ -12,10 +12,23 @@ import Link from "next/link";
 import { getUser } from "../../auth.config";
 import MainLayout from "../Layouts/MainLayout";
 
+const cards = [
+  {
+    link: "/events",
+    title: "View events",
+    icon: "/assets/icons/calendar.svg",
+  },
+  {
+    link: "/profile",
+    title: "Update profile",
+    icon: "/assets/icons/cog.svg",
+  },
+];
+
 const Members: React.FC = () => {
   return (
     <MainLayout showNav>
-      <Container maxW="500px" mt="100px" display="flex" flexDirection="column">
+      <Container maxW="500px" display="flex" flexDirection="column">
         <Heading
           size="3xl"
           mb="24px"
@@ -32,40 +45,26 @@ const Members: React.FC = () => {
           condimentum enim ut ultrices.
         </Text>
         <Flex w="full" align="center" justify="space-between">
-          <Link href="/events" passHref>
-            <VStack
-              mt="24px"
-              spacing="24px"
-              bg="rgba(0, 0, 0, 0.9)"
-              boxShadow="0px 0px 50px #8B38FF"
-              borderRadius="28px"
-              align="center"
-              justify="center"
-              w="200px"
-              h="200px"
-            >
-              <Image src="/assets/icons/calendar.svg" alt="calendar" w="60px" />
-              <Text>View events</Text>
-            </VStack>
-          </Link>
-
-          <Link href="/profile" passHref>
-            <VStack
-              mt="24px"
-              spacing="24px"
-              bg="rgba(0, 0, 0, 0.9)"
-              boxShadow="0px 0px 50px #8B38FF"
-              borderRadius="28px"
-              align="center"
-              justify="center"
-              w="200px"
-              h="200px"
-            >
-              <Image src="/assets/icons/cog.svg" alt="calendar" w="60px" />
-              <Text>Update profile</Text>
-            </VStack>
-          </Link>
+          {cards.map(({ title, link, icon }) => (
+            <Link href={link} passHref key={title}>
+              <VStack
+                mt="24px"
+                spacing="24px"
+                bg="rgba(0, 0, 0, 0.9)"
+                boxShadow="0px 0px 50px #8B38FF"
+                borderRadius="28px"
+                align="center"
+                justify="center"
+                w="175px"
+                h="175px"
+              >
+                <Image src={icon} alt="calendar" w="60px" />
+                <Text>{title}</Text>
+              </VStack>
+            </Link>
+          ))}
         </Flex>
+
         <Flex
           w="full"
           align="center"
@@ -85,7 +84,7 @@ const Members: React.FC = () => {
             >
               VIP PASS
             </Text>
-            <Text>
+            <Text fontSize={{ base: "14px", md: "16px" }}>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. In id
               egestas est. Fusce condimentum erat eget sollicitudin
               sollicitudin.
