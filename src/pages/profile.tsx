@@ -1,6 +1,6 @@
 import { table } from "@/utils/Airtable";
 import { Flex } from "@chakra-ui/react";
-import { getUser } from "auth.config";
+import { getUser } from "@/lib/evm-auth.config";
 import type { GetServerSideProps } from "next";
 import { useForm } from "react-hook-form";
 import { IFormData } from "../../types/IFormData";
@@ -32,7 +32,7 @@ const Register = ({ user }: any) => {
 
 export default Register;
 
-export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
+export const getServerSideProps: GetServerSideProps = async ({ req }) => {
   const user = await getUser(req);
 
   const record = await table

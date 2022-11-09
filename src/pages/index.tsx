@@ -1,19 +1,25 @@
+import ConnectWallet from "@/components/ConnectWallet";
 import { Nav } from "@/components/Header/Nav";
 import { ArrowsIcon } from "@/Icons";
 import { Box, Flex, Link, Spinner, Text } from "@chakra-ui/react";
 import {
-  ConnectWallet,
   useClaimIneligibilityReasons,
   useContract,
   useNFT,
   useNFTBalance,
   useUser,
 } from "@thirdweb-dev/react";
+import {
+  useNFTs,
+  useProgram,
+  useUser as useUserSolana,
+} from "@thirdweb-dev/react/solana";
 import type { NextPage } from "next";
 import Image from "next/image";
 
 const Home: NextPage = () => {
   const { user } = useUser();
+  const { user: userSolana } = useUserSolana();
   const { contract } = useContract(
     process.env.NEXT_PUBLIC_THIRDWEB_CONTRACT_ADDRESS || "",
     "edition-drop"
@@ -25,8 +31,14 @@ const Home: NextPage = () => {
     { walletAddress: user?.address || "", quantity: 1 },
     "0"
   );
+  const { program } = useProgram(
+    process.env.NEXT_PUBLIC_THIRDWEB_PROGRAM_ADDRESS,
+    "nft-drop"
+  );
+  const { data: nfts, isLoading: nftsIsLoading } = useNFTs(program);
+  const hasNFT = nfts?.some((nft) => nft.owner === userSolana?.address);
 
-  if (isLoading || !nft) {
+  if (isLoading || !nft || nftsIsLoading) {
     return (
       <Flex
         position="fixed"
@@ -69,15 +81,14 @@ const Home: NextPage = () => {
           }}
         />
 
-        {user && balance?.gt(0) && (
+        {(user || userSolana) && balance?.gt(0) && (
           <Box w="100%" pos="absolute" top={0}>
             <Nav />
           </Box>
         )}
 
-        {!user ? (
-          <ConnectWallet />
-        ) : balance?.gt(0) ? (
+        {!user && !userSolana && <ConnectWallet />}
+        {(balance?.gt(0) || hasNFT) && (
           <Link href="/members" textDecor="none !important">
             <Text
               background="linear-gradient(93.33deg, #F213A4 1.94%, #7A66FF 100%)"
@@ -91,7 +102,9 @@ const Home: NextPage = () => {
             </Text>
             <ArrowsIcon mt={2} />
           </Link>
-        ) : ineligibility?.length === 0 ? (
+        )}
+
+        {ineligibility?.length === 0 && (
           <Link href="/claim" textDecor="none !important">
             <Text
               background="linear-gradient(93.33deg, #F213A4 1.94%, #7A66FF 100%)"
@@ -105,10 +118,10 @@ const Home: NextPage = () => {
             </Text>
             <ArrowsIcon mt={2} />
           </Link>
-        ) : (
-          <>
-            <Text>No invite? Register here for future IRL events</Text>
-          </>
+        )}
+
+        {user && !balance?.gt(0) && ineligibility?.length !== 0 && (
+          <Text>No invite? Register here for future IRL events</Text>
         )}
       </Flex>
     </Flex>
