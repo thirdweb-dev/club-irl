@@ -45,7 +45,7 @@ const Claim: React.FC = () => {
   }, [balance, router]);
 
   return (
-    <MainLayout showNav>
+    <MainLayout>
       <Flex
         direction="column"
         align="center"
