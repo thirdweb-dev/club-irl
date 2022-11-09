@@ -27,7 +27,7 @@ const cards = [
 
 const Members: React.FC = () => {
   return (
-    <MainLayout showNav>
+    <MainLayout>
       <Container maxW="500px" display="flex" flexDirection="column">
         <Heading
           size="3xl"

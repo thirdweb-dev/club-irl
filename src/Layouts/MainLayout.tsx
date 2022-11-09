@@ -4,10 +4,9 @@ import { Header } from "../components/Header";
 
 interface IMainLayoutProps {
   children: React.ReactNode;
-  showNav?: boolean;
 }
 
-const MainLayout: FC<IMainLayoutProps> = ({ showNav, children }) => {
+const MainLayout: FC<IMainLayoutProps> = ({ children }) => {
   return (
     <Flex
       w="100vw"
@@ -19,7 +18,7 @@ const MainLayout: FC<IMainLayoutProps> = ({ showNav, children }) => {
       flexDir="column"
       py={{ base: "200px", md: "100px" }}
     >
-      <Header showNav={showNav} />
+      <Header />
       {children}
     </Flex>
   );

@@ -16,8 +16,14 @@ import MainLayout from "../Layouts/MainLayout";
 
 const Members: React.FC = () => {
   return (
-    <MainLayout showNav>
-      <Container w="100%" mt="160px" display="flex" flexDirection="column">
+    <MainLayout>
+      <Container
+        w="100%"
+        mt="160px"
+        display="flex"
+        flexDirection="column"
+        alignItems="center"
+      >
         <Heading
           size="3xl"
           mb="24px"
@@ -38,9 +44,14 @@ const Members: React.FC = () => {
           alignSelf="center"
           width="100vw"
           gap={10}
-          px={20}
+          px={{
+            base: 0,
+            md: 10,
+          }}
           mt={10}
           flexWrap="wrap"
+          justify="center"
+          align="center"
         >
           {events.map((event) => (
             <Link

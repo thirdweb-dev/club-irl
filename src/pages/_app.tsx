@@ -1,6 +1,6 @@
 import type { AppProps } from "next/app";
 import { ChainId, ThirdwebProvider } from "@thirdweb-dev/react";
-import { ChakraProvider } from "@chakra-ui/react";
+import { ChakraProvider, DarkMode } from "@chakra-ui/react";
 import theme from "../config/theme";
 import "../styles/globals.css";
 
@@ -10,16 +10,18 @@ const activeChainId = ChainId.Goerli;
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ChakraProvider theme={theme}>
-      <ThirdwebProvider
-        desiredChainId={activeChainId}
-        authConfig={{
-          domain: process.env.NEXT_PUBLIC_THIRDWEB_AUTH_DOMAIN || "",
-          authUrl: "/api/auth",
-          loginRedirect: "/members",
-        }}
-      >
-        <Component {...pageProps} />
-      </ThirdwebProvider>
+      <DarkMode>
+        <ThirdwebProvider
+          desiredChainId={activeChainId}
+          authConfig={{
+            domain: process.env.NEXT_PUBLIC_THIRDWEB_AUTH_DOMAIN || "",
+            authUrl: "/api/auth",
+            loginRedirect: "/members",
+          }}
+        >
+          <Component {...pageProps} />
+        </ThirdwebProvider>
+      </DarkMode>
     </ChakraProvider>
   );
 }
