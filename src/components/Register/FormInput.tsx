@@ -8,7 +8,7 @@ import {
 } from "@chakra-ui/react";
 import type { FC } from "react";
 import { ErrorOption, UseFormRegister } from "react-hook-form";
-import { IFormData, IFormDataKeys } from "../../types/IFormData";
+import { IFormData, IFormDataKeys } from "../../../types/IFormData";
 
 interface IFormDataInput extends InputProps {
   placeholder: string;
