@@ -10,7 +10,7 @@ import {
 } from "@chakra-ui/react";
 import { ThirdwebSDK } from "@thirdweb-dev/sdk";
 import { GetServerSidePropsContext } from "next";
-import { getUser } from "../../auth.config";
+import { getUser } from "../lib/evm-auth.config";
 import events from "../../data/events.json";
 import MainLayout from "../Layouts/MainLayout";
 

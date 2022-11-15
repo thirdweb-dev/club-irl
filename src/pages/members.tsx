@@ -1,3 +1,4 @@
+import { getUserSolana } from "@/lib/solana-auth.config";
 import {
   Container,
   Flex,
@@ -7,10 +8,12 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import { ThirdwebSDK } from "@thirdweb-dev/sdk";
-import { GetServerSidePropsContext } from "next";
+import { ThirdwebSDK as ThirdwebSDKSolana } from "@thirdweb-dev/sdk/solana";
+import { GetServerSideProps } from "next";
 import Link from "next/link";
-import { getUser } from "../../auth.config";
 import MainLayout from "../Layouts/MainLayout";
+import { getUser } from "../lib/evm-auth.config";
+import { network } from "./_app";
 
 const cards = [
   {
@@ -97,42 +100,57 @@ const Members: React.FC = () => {
   );
 };
 
-export async function getServerSideProps(context: GetServerSidePropsContext) {
-  const user = await getUser(context.req);
+export const getServerSideProps: GetServerSideProps = async ({ req }) => {
+  const user = await getUser(req);
+  const solanaUser = await getUserSolana(req);
 
-  if (!user) {
+  const redirect = {
+    destination: "/",
+    permanent: false,
+  };
+
+  if (!user && !solanaUser) {
     return {
-      redirect: {
-        destination: "/",
-        permanent: false,
-      },
+      redirect,
     };
   }
 
-  const sdk = ThirdwebSDK.fromPrivateKey(
-    process.env.THIRDWEB_PRIVATE_KEY || "",
-    "goerli"
-  );
+  if (user) {
+    const sdk = ThirdwebSDK.fromPrivateKey(
+      process.env.THIRDWEB_PRIVATE_KEY || "",
+      "goerli"
+    );
 
-  const contract = await sdk.getContract(
-    process.env.NEXT_PUBLIC_THIRDWEB_CONTRACT_ADDRESS || "",
-    "edition-drop"
-  );
-  const balance = await contract.balanceOf(user.address, 0);
-  const hasNft = balance.gt(0);
+    const contract = await sdk.getContract(
+      process.env.NEXT_PUBLIC_THIRDWEB_CONTRACT_ADDRESS || "",
+      "edition-drop"
+    );
+    const balance = await contract.balanceOf(user.address, 0);
+    const hasNft = balance.gt(0);
 
-  if (!hasNft) {
+    if (!hasNft) {
+      return {
+        redirect,
+      };
+    }
+  }
+
+  const sdk = ThirdwebSDKSolana.fromNetwork(network);
+  const program = await sdk.getNFTDrop(
+    process.env.NEXT_PUBLIC_THIRDWEB_PROGRAM_ADDRESS!
+  );
+  const nfts = await program?.getAllClaimed();
+
+  const hasNFT = nfts?.some((nft) => nft.owner === solanaUser?.address);
+  if (!hasNFT) {
     return {
-      redirect: {
-        destination: "/",
-        permanent: false,
-      },
+      redirect,
     };
   }
 
   return {
     props: {},
   };
-}
+};
 
 export default Members;

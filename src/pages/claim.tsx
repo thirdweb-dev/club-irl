@@ -21,7 +21,7 @@ import { ThirdwebSDK } from "@thirdweb-dev/sdk";
 import { useRouter } from "next/router";
 import { GetServerSidePropsContext } from "next/types";
 import React, { useEffect, useState } from "react";
-import { getUser } from "../../auth.config";
+import { getUser } from "../lib/evm-auth.config";
 import { VIPIcon } from "../Icons/VIP";
 import MainLayout from "../Layouts/MainLayout";
 

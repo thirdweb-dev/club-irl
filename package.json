@@ -12,6 +12,8 @@
     "@chakra-ui/react": "^2.3.6",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
+    "@solana/wallet-adapter-react": "^0.15.24",
+    "@solana/wallet-adapter-react-ui": "^0.9.22",
     "@thirdweb-dev/auth": "^2.0.23",
     "@thirdweb-dev/react": "^3.4.2",
     "@thirdweb-dev/sdk": "^3.4.2",
