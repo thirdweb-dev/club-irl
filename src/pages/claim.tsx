@@ -51,7 +51,7 @@ const Claim: React.FC = () => {
       }
       setLoading(true);
       try {
-        await contract?.erc1155.claimTo(address, tokenId, address);
+        await contract?.erc1155.claim(tokenId, address);
         router.push("/members");
       } catch (error) {
         console.log(error);
