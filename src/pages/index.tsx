@@ -2,6 +2,7 @@ import { Nav } from "@/components/Header/Nav";
 import { ArrowsIcon } from "@/Icons";
 import { Box, Button, Flex, Link, Spinner, Text } from "@chakra-ui/react";
 import {
+  ChainId,
   ConnectWallet,
   useAddress,
   useClaimIneligibilityReasons,
@@ -81,7 +82,9 @@ const Home: NextPage = () => {
 
         {!user ? (
           address ? (
-            <Button onClick={() => login()}>Sign in</Button>
+            <Button onClick={() => login({ chainId: ChainId.Goerli })}>
+              Sign in
+            </Button>
           ) : (
             <ConnectWallet />
           )
