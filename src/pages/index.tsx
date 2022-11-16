@@ -20,11 +20,7 @@ const Home: NextPage = () => {
     "edition-drop"
   );
   const { data: balance } = useNFTBalance(contract, user?.address, tokenId);
-  const {
-    data: ineligibility,
-    isLoading,
-    error,
-  } = useClaimIneligibilityReasons(
+  const { data: ineligibility, isLoading } = useClaimIneligibilityReasons(
     contract,
     { walletAddress: user?.address || "", quantity: 1 },
     tokenId
@@ -80,7 +76,15 @@ const Home: NextPage = () => {
         )}
 
         {!user ? (
-          <ConnectWallet />
+          <ConnectWallet
+            auth={{
+              loginConfig: {
+                onError: (error) => {
+                  console.log(error);
+                },
+              },
+            }}
+          />
         ) : balance?.gt(0) ? (
           <Link href="/members" textDecor="none !important">
             <Text
