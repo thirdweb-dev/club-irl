@@ -1,10 +1,12 @@
 import { Nav } from "@/components/Header/Nav";
 import { ArrowsIcon } from "@/Icons";
-import { Box, Flex, Link, Spinner, Text } from "@chakra-ui/react";
+import { Box, Button, Flex, Link, Spinner, Text } from "@chakra-ui/react";
 import {
   ConnectWallet,
+  useAddress,
   useClaimIneligibilityReasons,
   useContract,
+  useLogin,
   useNFTBalance,
   useUser,
 } from "@thirdweb-dev/react";
@@ -25,6 +27,8 @@ const Home: NextPage = () => {
     { walletAddress: user?.address || "", quantity: 1 },
     tokenId
   );
+  const address = useAddress();
+  const login = useLogin();
 
   if (isLoading && user?.address) {
     return (
@@ -76,15 +80,11 @@ const Home: NextPage = () => {
         )}
 
         {!user ? (
-          <ConnectWallet
-            auth={{
-              loginConfig: {
-                onError: (error) => {
-                  console.log(error);
-                },
-              },
-            }}
-          />
+          address ? (
+            <Button onClick={() => login()}>Sign in</Button>
+          ) : (
+            <ConnectWallet />
+          )
         ) : balance?.gt(0) ? (
           <Link href="/members" textDecor="none !important">
             <Text
