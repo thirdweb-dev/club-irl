@@ -12,11 +12,13 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import {
+  ChainId,
   ConnectWallet,
   useAddress,
   useContract,
+  useNetwork,
+  useNetworkMismatch,
   useNFTBalance,
-  useTotalCirculatingSupply,
 } from "@thirdweb-dev/react";
 import { ThirdwebSDK } from "@thirdweb-dev/sdk";
 import { useRouter } from "next/router";
@@ -25,7 +27,6 @@ import React, { useEffect, useState } from "react";
 import { getUser } from "../../auth.config";
 import { VIPIcon } from "../Icons/VIP";
 import MainLayout from "../Layouts/MainLayout";
-import { useNetworkMismatch, useNetwork, ChainId } from "@thirdweb-dev/react";
 
 const Claim: React.FC = () => {
   const address = useAddress();
@@ -34,7 +35,6 @@ const Claim: React.FC = () => {
     "edition-drop"
   );
   const tokenId = 0;
-  const { data: claimedSupply } = useTotalCirculatingSupply(contract, tokenId);
   const [loading, setLoading] = useState(false);
   const { data: balance } = useNFTBalance(contract, address, "0");
   const router = useRouter();
@@ -51,7 +51,7 @@ const Claim: React.FC = () => {
       }
       setLoading(true);
       try {
-        await contract?.erc1155.claim(tokenId, address);
+        await contract?.erc1155.claim(tokenId, 1);
         router.push("/members");
       } catch (error) {
         console.log(error);
@@ -150,9 +150,6 @@ const Claim: React.FC = () => {
               )}
             </Button>
           </Flex>
-          {claimedSupply && (
-            <Text color="#AC46FF">{claimedSupply?.toString()} Minted</Text>
-          )}
         </VStack>
       </Flex>
     </MainLayout>

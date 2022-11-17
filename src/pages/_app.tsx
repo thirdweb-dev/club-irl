@@ -18,6 +18,14 @@ function MyApp({ Component, pageProps }: AppProps) {
             domain: "example.org",
             loginRedirect: "/members",
           }}
+          sdkOptions={{
+            gasless: {
+              biconomy: {
+                apiId: process.env.NEXT_PUBLIC_BICONOMY_ID!,
+                apiKey: process.env.NEXT_PUBLIC_BICONOMY_KEY!,
+              },
+            },
+          }}
         >
           <Component {...pageProps} />
         </ThirdwebProvider>

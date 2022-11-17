@@ -120,6 +120,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     "edition-drop"
   );
   const balance = await contract.balanceOf(user.address, 0);
+  console.log(balance.gt(0));
   const hasNft = balance.gt(0);
 
   if (!hasNft) {
