@@ -57,6 +57,7 @@ const Members: React.FC = () => {
                 justify="center"
                 w="175px"
                 h="175px"
+                cursor="pointer"
               >
                 <Image src={icon} alt="calendar" w="60px" />
                 <Text>{title}</Text>
