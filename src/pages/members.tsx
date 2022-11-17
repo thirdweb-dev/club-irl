@@ -16,12 +16,12 @@ const cards = [
   {
     link: "/events",
     title: "View events",
-    icon: "/assets/icons/calendar.svg",
+    icon: "/assets/icons/Calendar.svg",
   },
   {
     link: "/profile",
     title: "Update profile",
-    icon: "/assets/icons/cog.svg",
+    icon: "/assets/icons/Cog.svg",
   },
 ];
 
