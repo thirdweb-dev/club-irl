@@ -4,22 +4,33 @@ import { useForm } from "react-hook-form";
 import { Form } from "../components/Register/Form";
 import MainLayout from "../Layouts/MainLayout";
 import { IFormData } from "../../types/IFormData";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useUser } from "@thirdweb-dev/react";
 
 const Register: NextPage = () => {
+  const { user } = useUser();
   const defaultValues = {
     name: "",
     email: "",
-    address: "",
+    address: user?.address,
   };
+
   const {
     register,
     handleSubmit,
     formState: { errors },
+    setValue,
+    getValues,
   } = useForm<IFormData>({
     defaultValues,
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
+
+  useEffect(() => {
+    if (user?.address && getValues("address").length === 0) {
+      setValue("address", user.address);
+    }
+  }, [getValues, setValue, user?.address]);
 
   return (
     <MainLayout>
