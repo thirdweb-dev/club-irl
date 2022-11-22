@@ -26,7 +26,6 @@ interface IFormDataProps {
   handleSubmit: UseFormHandleSubmit<IFormData>;
   errors: FieldErrors<IFormData>;
   setIsSubmitted: (value: boolean) => void;
-  isMember: boolean;
 }
 
 export const Form: FC<IFormDataProps> = ({
