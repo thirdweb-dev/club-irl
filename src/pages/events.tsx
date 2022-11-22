@@ -35,9 +35,8 @@ const Members: React.FC = () => {
           Member events
         </Heading>
         <Text textAlign="center" fontSize="14px">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In id egestas
-          est. Fusce condimentum erat eget sollicitudin sollicitudin. Sed auctor
-          condimentum enim ut ultrices.
+          These are the upcoming exclusive clubIRL events that all members of
+          the community have access to. Register below to attend.
         </Text>
 
         <Flex
