@@ -1,3 +1,3 @@
-import { ThirdwebAuthHandler } from "../../../../auth.config";
+import { ThirdwebAuthHandler } from "auth.config";
 
 export default ThirdwebAuthHandler();

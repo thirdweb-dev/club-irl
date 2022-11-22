@@ -24,8 +24,8 @@ export const CalendarIcon: FC<IconProps> = ({ ...otherProps }) => {
           y2="1.08269"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#F213A4" />
-          <stop offset="1" stop-color="#7A66FF" />
+          <stop stopColor="#F213A4" />
+          <stop offset="1" stopColor="#7A66FF" />
         </linearGradient>
       </defs>
     </Icon>

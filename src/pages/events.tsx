@@ -19,7 +19,7 @@ const Members: React.FC = () => {
     <MainLayout>
       <Container
         w="100%"
-        mt="160px"
+        mt={{ base: 0, md: "160px" }}
         display="flex"
         flexDirection="column"
         alignItems="center"

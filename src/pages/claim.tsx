@@ -7,15 +7,18 @@ import {
   NumberInput,
   NumberInputField,
   NumberInputStepper,
+  Spinner,
   Text,
   VStack,
 } from "@chakra-ui/react";
 import {
+  ChainId,
   ConnectWallet,
   useAddress,
   useContract,
+  useNetwork,
+  useNetworkMismatch,
   useNFTBalance,
-  useTotalCirculatingSupply,
 } from "@thirdweb-dev/react";
 import { ThirdwebSDK } from "@thirdweb-dev/sdk";
 import { useRouter } from "next/router";
@@ -32,11 +35,31 @@ const Claim: React.FC = () => {
     "edition-drop"
   );
   const tokenId = 0;
-  const { data: claimedSupply } = useTotalCirculatingSupply(contract, tokenId);
-
+  const [loading, setLoading] = useState(false);
   const { data: balance } = useNFTBalance(contract, address, "0");
   const router = useRouter();
-  const [amount, setAmount] = useState(0);
+  const [amount, setAmount] = useState(1);
+
+  const isMismatched = useNetworkMismatch();
+  const [, switchNetwork] = useNetwork();
+
+  const handleClaim = async () => {
+    if (address && contract && amount > 0) {
+      if (isMismatched) {
+        // @ts-ignore
+        return switchNetwork(ChainId.Goerli);
+      }
+      setLoading(true);
+      try {
+        await contract?.erc1155.claim(tokenId, 1);
+        router.push("/members");
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setLoading(false);
+      }
+    }
+  };
 
   useEffect(() => {
     if (balance?.gt(0)) {
@@ -108,19 +131,25 @@ const Claim: React.FC = () => {
                 />
               </NumberInputStepper>
             </NumberInput>
+
             <Button
               gap="2"
               bg="transparent"
               border="1px solid #F213A4"
               w="full"
+              isDisabled={!address || loading || !contract}
+              onClick={handleClaim}
             >
-              <VIPIcon />
-              <Text>Mint (FREE)</Text>
+              {loading ? (
+                <Spinner />
+              ) : (
+                <>
+                  <VIPIcon />
+                  <Text>Mint (FREE)</Text>
+                </>
+              )}
             </Button>
           </Flex>
-          {claimedSupply && (
-            <Text color="#AC46FF">{claimedSupply?.toString()} Minted</Text>
-          )}
         </VStack>
       </Flex>
     </MainLayout>
@@ -144,10 +173,11 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     "goerli"
   );
 
-  const contract = await sdk.getEditionDrop(
-    process.env.NEXT_PUBLIC_THIRDWEB_CONTRACT_ADDRESS || ""
+  const contract = await sdk.getContract(
+    process.env.NEXT_PUBLIC_THIRDWEB_CONTRACT_ADDRESS || "",
+    "edition-drop"
   );
-  const balance = await contract.balanceOf(user.address, 0);
+  const balance = await contract?.balanceOf(user.address, 0);
   const hasNft = balance.gt(0);
 
   if (hasNft) {

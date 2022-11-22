@@ -14,9 +14,17 @@ function MyApp({ Component, pageProps }: AppProps) {
         <ThirdwebProvider
           desiredChainId={activeChainId}
           authConfig={{
-            domain: process.env.NEXT_PUBLIC_THIRDWEB_AUTH_DOMAIN || "",
             authUrl: "/api/auth",
+            domain: "example.org",
             loginRedirect: "/members",
+          }}
+          sdkOptions={{
+            gasless: {
+              biconomy: {
+                apiId: process.env.NEXT_PUBLIC_BICONOMY_ID!,
+                apiKey: process.env.NEXT_PUBLIC_BICONOMY_KEY!,
+              },
+            },
           }}
         >
           <Component {...pageProps} />

@@ -1,16 +1,19 @@
 import { Nav } from "@/components/Header/Nav";
 import { ArrowsIcon } from "@/Icons";
-import { Box, Flex, Link, Spinner, Text } from "@chakra-ui/react";
+import { Box,  Flex, Link, Spinner, Text } from "@chakra-ui/react";
 import {
   ConnectWallet,
+  useAddress,
   useClaimIneligibilityReasons,
   useContract,
-  useNFT,
+  useLogin,
   useNFTBalance,
   useUser,
 } from "@thirdweb-dev/react";
 import type { NextPage } from "next";
 import Image from "next/image";
+
+const tokenId = 0;
 
 const Home: NextPage = () => {
   const { user } = useUser();
@@ -18,15 +21,14 @@ const Home: NextPage = () => {
     process.env.NEXT_PUBLIC_THIRDWEB_CONTRACT_ADDRESS || "",
     "edition-drop"
   );
-  const { data: nft, isLoading } = useNFT(contract, 0);
-  const { data: balance } = useNFTBalance(contract, user?.address, "0");
-  const { data: ineligibility } = useClaimIneligibilityReasons(
+  const { data: balance } = useNFTBalance(contract, user?.address, tokenId);
+  const { data: ineligibility, isLoading } = useClaimIneligibilityReasons(
     contract,
     { walletAddress: user?.address || "", quantity: 1 },
-    "0"
+    tokenId
   );
 
-  if (isLoading || !nft) {
+  if (isLoading && user?.address) {
     return (
       <Flex
         position="fixed"

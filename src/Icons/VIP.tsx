@@ -12,20 +12,20 @@ export const VIPIcon: FC<IconProps> = ({ ...otherProps }) => {
       {...otherProps}
     >
       <path
-        fill-rule="evenodd"
-        clip-rule="evenodd"
+        fillRule="evenodd"
+        clipRule="evenodd"
         d="M13.7645 0.503932C14.2104 0.684708 14.4273 1.19763 14.2489 1.64957L10.7707 10.4631C10.5923 10.915 10.0863 11.1348 9.64035 10.954C9.19446 10.7733 8.97757 10.2603 9.15593 9.8084L12.6342 0.994919C12.8126 0.542978 13.3186 0.323155 13.7645 0.503932Z"
         fill="#9A66FF"
       />
       <path
-        fill-rule="evenodd"
-        clip-rule="evenodd"
+        fillRule="evenodd"
+        clipRule="evenodd"
         d="M4.39795 5.72898C2.18881 5.72898 0.397949 7.51985 0.397949 9.72898V22C0.397949 24.2091 2.18881 26 4.39795 26H16.3979C18.6071 26 20.3979 24.2091 20.3979 22V9.72898C20.3979 7.51984 18.6071 5.72898 16.3979 5.72898H4.39795ZM10.3978 12.7798C11.5984 12.7798 12.5717 11.7933 12.5717 10.5764C12.5717 9.35951 11.5984 8.37303 10.3978 8.37303C9.19719 8.37303 8.22389 9.35951 8.22389 10.5764C8.22389 11.7933 9.19719 12.7798 10.3978 12.7798Z"
         fill="url(#paint0_linear_9_1402)"
       />
       <path
-        fill-rule="evenodd"
-        clip-rule="evenodd"
+        fillRule="evenodd"
+        clipRule="evenodd"
         d="M5.25555 0.0792141C5.69276 -0.122207 6.20828 0.0737338 6.40701 0.51686L10.7548 10.2117C10.9536 10.6548 10.7602 11.1773 10.323 11.3787C9.88584 11.5802 9.37031 11.3842 9.17159 10.9411L4.82376 1.24627C4.62503 0.803143 4.81835 0.280635 5.25555 0.0792141Z"
         fill="#B28AFF"
       />
@@ -50,8 +50,8 @@ export const VIPIcon: FC<IconProps> = ({ ...otherProps }) => {
           y2="26"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#F213A4" />
-          <stop offset="1" stop-color="#9A66FF" />
+          <stop stopColor="#F213A4" />
+          <stop offset="1" stopColor="#9A66FF" />
         </linearGradient>
       </defs>
     </Icon>

@@ -16,12 +16,12 @@ const cards = [
   {
     link: "/events",
     title: "View events",
-    icon: "/assets/icons/calendar.svg",
+    icon: "/assets/icons/Calendar.svg",
   },
   {
     link: "/profile",
     title: "Update profile",
-    icon: "/assets/icons/cog.svg",
+    icon: "/assets/icons/Cog.svg",
   },
 ];
 
@@ -57,6 +57,7 @@ const Members: React.FC = () => {
                 justify="center"
                 w="175px"
                 h="175px"
+                cursor="pointer"
               >
                 <Image src={icon} alt="calendar" w="60px" />
                 <Text>{title}</Text>
@@ -119,6 +120,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     "edition-drop"
   );
   const balance = await contract.balanceOf(user.address, 0);
+  console.log(balance.gt(0));
   const hasNft = balance.gt(0);
 
   if (!hasNft) {
