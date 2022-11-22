@@ -6,6 +6,10 @@ import {
   Heading,
   Text,
   useToast,
+  Input,
+  FormLabel,
+  Select,
+  Textarea,
 } from "@chakra-ui/react";
 import axios from "axios";
 import { FC, useState } from "react";
@@ -22,6 +26,7 @@ interface IFormDataProps {
   handleSubmit: UseFormHandleSubmit<IFormData>;
   errors: FieldErrors<IFormData>;
   setIsSubmitted: (value: boolean) => void;
+  isMember: boolean;
 }
 
 export const Form: FC<IFormDataProps> = ({
@@ -32,12 +37,13 @@ export const Form: FC<IFormDataProps> = ({
 }) => {
   const toast = useToast();
   const [isAccepted, setIsAccepted] = useState(false);
+
   const onSubmit = async (data: IFormData) => {
     try {
       await axios.post("/api/user", data);
       toast({
         title: "Success",
-        description: "You have been registered",
+        description: "Your request has been submitted",
         status: "success",
         duration: 5000,
         isClosable: true,
@@ -66,6 +72,7 @@ export const Form: FC<IFormDataProps> = ({
       alignItems="center"
       justifyContent="center"
       p={16}
+      mt={{ base: "40px", md: "200px" }}
       onSubmit={handleSubmit(onSubmit)}
     >
       <Heading
@@ -77,9 +84,7 @@ export const Form: FC<IFormDataProps> = ({
         Membership request
       </Heading>
       <Text my="6 !important">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec fermentum
-        quis urna eget convallis. Cras orci enim, mattis eu purus sit amet,
-        gravida pharetra lorem. Fusce porta sed mi quis pharetra.
+        clubIRL is an invite only community. Please fill out this form to apply.
       </Text>
       <FormInput
         placeholder="Your name:"
@@ -93,13 +98,165 @@ export const Form: FC<IFormDataProps> = ({
         id="email"
         error={errors.email}
       />
-
       <FormInput
         placeholder="Your wallet address:"
         register={register}
         id="address"
         error={errors.address}
       />
+      <FormInput
+        placeholder="Your company:"
+        register={register}
+        id="company"
+        error={errors.company}
+      />
+      <FormInput
+        placeholder="Your role:"
+        register={register}
+        id="role"
+        error={errors.role}
+      />
+
+      <FormControl variant="floating" isRequired>
+        <Input
+          _focus={{
+            boxShadow: "0px 0px 10px 2px #9A66FF",
+            borderColor: "#9A66FF",
+            outline: "none",
+          }}
+          w="full"
+          outline="none"
+          border="1px solid"
+          borderColor="#4B3678"
+          borderRadius="9px"
+          py={6}
+          placeholder=""
+          my="2 !important"
+          {...register("bio", {
+            required: {
+              value: true,
+              message: `bio is required`,
+            },
+          })}
+        />
+        <FormLabel>{"Your bio:"}</FormLabel>
+        {errors.bio?.message && (
+          <Text color="red.500">{errors.bio?.message}</Text>
+        )}
+      </FormControl>
+
+      <FormControl variant="floating" isRequired>
+        <Textarea
+          _focus={{
+            boxShadow: "0px 0px 10px 2px #9A66FF",
+            borderColor: "#9A66FF",
+            outline: "none",
+          }}
+          w="full"
+          outline="none"
+          border="1px solid"
+          borderColor="#4B3678"
+          borderRadius="9px"
+          py={6}
+          placeholder=""
+          my="2 !important"
+          {...register("events", {
+            required: {
+              value: true,
+              message: `this field is required`,
+            },
+          })}
+        />
+        <FormLabel>{"Which clubIRL events have you attended?"}</FormLabel>
+        {errors.events?.message && (
+          <Text color="red.500">{errors.events?.message}</Text>
+        )}
+      </FormControl>
+
+      <FormControl variant="floating" isRequired>
+        <Textarea
+          _focus={{
+            boxShadow: "0px 0px 10px 2px #9A66FF",
+            borderColor: "#9A66FF",
+            outline: "none",
+          }}
+          w="full"
+          outline="none"
+          border="1px solid"
+          borderColor="#4B3678"
+          borderRadius="9px"
+          py={6}
+          placeholder=""
+          my="2 !important"
+          {...register("connections", {
+            required: {
+              value: true,
+              message: `this field is required`,
+            },
+          })}
+        />
+        <FormLabel>{"Who do you know in clubIRL?"}</FormLabel>
+        {errors.connections?.message && (
+          <Text color="red.500">{errors.connections?.message}</Text>
+        )}
+      </FormControl>
+
+      <FormControl variant="floating">
+        <Input
+          _focus={{
+            boxShadow: "0px 0px 10px 2px #9A66FF",
+            borderColor: "#9A66FF",
+            outline: "none",
+          }}
+          w="full"
+          outline="none"
+          border="1px solid"
+          borderColor="#4B3678"
+          borderRadius="9px"
+          py={6}
+          placeholder=""
+          my="2 !important"
+          {...register("handle")}
+        />
+        <FormLabel>{"Your handle (optional):"}</FormLabel>
+        {errors.handle?.message && (
+          <Text color="red.500">{errors.handle?.message}</Text>
+        )}
+      </FormControl>
+
+      <FormControl variant="floating" isRequired>
+        <Select
+          _focus={{
+            boxShadow: "0px 0px 10px 2px #9A66FF",
+            borderColor: "#9A66FF",
+            outline: "none",
+          }}
+          w="full"
+          outline="none"
+          border="1px solid"
+          borderColor="#4B3678"
+          borderRadius="9px"
+          py={6}
+          placeholder=""
+          my="2 !important"
+          {...register("communication", {
+            required: {
+              value: true,
+              message: `${"communication"} is required`,
+            },
+          })}
+        >
+          <option value="telegram">Telegram</option>
+          <option value="twitter">Twitter</option>
+          <option value="discord">Discord</option>
+          <option value="email">Email</option>
+        </Select>
+        <FormLabel>Preferred method of communication</FormLabel>
+        {errors.communication?.message && (
+          <Text color="red.500">{errors.communication?.message}</Text>
+        )}
+      </FormControl>
+
       <Flex gap={2}>
         <Checkbox
           colorScheme="purple"

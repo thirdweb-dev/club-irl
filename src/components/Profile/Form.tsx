@@ -1,5 +1,15 @@
-import { Button, FormControl, Heading, Text, useToast } from "@chakra-ui/react";
+import {
+  Button,
+  FormControl,
+  Heading,
+  Text,
+  useToast,
+  Input,
+  Select,
+  FormLabel,
+} from "@chakra-ui/react";
 import axios from "axios";
+import { useRouter } from "next/router";
 import { FC } from "react";
 import {
   FieldErrors,
@@ -20,6 +30,7 @@ export const Form: FC<IFormDataProps> = ({
   handleSubmit,
   errors,
 }) => {
+  const router = useRouter();
   const toast = useToast();
 
   const onSubmit = async (data: IFormData) => {
@@ -32,6 +43,7 @@ export const Form: FC<IFormDataProps> = ({
         duration: 5000,
         isClosable: true,
       });
+      await router.replace("/members");
     } catch (error) {
       toast({
         title: "Error",
@@ -65,11 +77,7 @@ export const Form: FC<IFormDataProps> = ({
       >
         Edit profile
       </Heading>
-      <Text my="6 !important">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec fermentum
-        quis urna eget convallis. Cras orci enim, mattis eu purus sit amet,
-        gravida pharetra lorem. Fusce porta sed mi quis pharetra.
-      </Text>
+      <Text my="6 !important">Edit and update your profile for clubIRL</Text>
       <FormInput
         placeholder="Your name:"
         register={register}
@@ -82,13 +90,102 @@ export const Form: FC<IFormDataProps> = ({
         id="email"
         error={errors.email}
       />
-
       <FormInput
-        placeholder="Your wallet address:"
+        placeholder="Your company:"
         register={register}
-        id="address"
-        error={errors.address}
+        id="company"
+        error={errors.company}
       />
+      <FormInput
+        placeholder="Your role:"
+        register={register}
+        id="role"
+        error={errors.role}
+      />
+
+      <FormControl variant="floating" isRequired>
+        <Input
+          _focus={{
+            boxShadow: "0px 0px 10px 2px #9A66FF",
+            borderColor: "#9A66FF",
+            outline: "none",
+          }}
+          w="full"
+          outline="none"
+          border="1px solid"
+          borderColor="#4B3678"
+          borderRadius="9px"
+          py={6}
+          placeholder=""
+          my="2 !important"
+          {...register("bio", {
+            required: {
+              value: true,
+              message: `bio is required`,
+            },
+          })}
+        />
+        <FormLabel>{"Your bio:"}</FormLabel>
+        {errors.bio?.message && (
+          <Text color="red.500">{errors.bio?.message}</Text>
+        )}
+      </FormControl>
+
+      <FormControl variant="floating">
+        <Input
+          _focus={{
+            boxShadow: "0px 0px 10px 2px #9A66FF",
+            borderColor: "#9A66FF",
+            outline: "none",
+          }}
+          w="full"
+          outline="none"
+          border="1px solid"
+          borderColor="#4B3678"
+          borderRadius="9px"
+          py={6}
+          placeholder=""
+          my="2 !important"
+          {...register("handle")}
+        />
+        <FormLabel>{"Your handle (optional):"}</FormLabel>
+        {errors.handle?.message && (
+          <Text color="red.500">{errors.handle?.message}</Text>
+        )}
+      </FormControl>
+
+      <FormControl variant="floating" isRequired>
+        <Select
+          _focus={{
+            boxShadow: "0px 0px 10px 2px #9A66FF",
+            borderColor: "#9A66FF",
+            outline: "none",
+          }}
+          w="full"
+          outline="none"
+          border="1px solid"
+          borderColor="#4B3678"
+          borderRadius="9px"
+          py={6}
+          placeholder=""
+          my="2 !important"
+          {...register("communication", {
+            required: {
+              value: true,
+              message: `${"communication"} is required`,
+            },
+          })}
+        >
+          <option value="telegram">Telegram</option>
+          <option value="twitter">Twitter</option>
+          <option value="discord">Discord</option>
+          <option value="email">Email</option>
+        </Select>
+        <FormLabel>Preferred method of communication</FormLabel>
+        {errors.communication?.message && (
+          <Text color="red.500">{errors.communication?.message}</Text>
+        )}
+      </FormControl>
 
       <Button
         _hover={{

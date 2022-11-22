@@ -4,7 +4,18 @@ import type { NextApiRequest, NextApiResponse } from "next";
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === "POST") {
-    const { email, name, address } = req.body;
+    const {
+      email,
+      name,
+      address,
+      company,
+      role,
+      bio,
+      communication,
+      handle,
+      events,
+      connections,
+    } = req.body;
     const addressRecord = await table
       .select({
         fields: ["address", "email", "name"],
@@ -34,6 +45,13 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
             address,
             email,
             name,
+            company,
+            role,
+            bio,
+            communication,
+            handle,
+            events,
+            connections,
           },
         },
       ]);
@@ -45,7 +63,18 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   }
 
   if (req.method === "PUT") {
-    const { email, name, address } = req.body;
+    const {
+      email,
+      name,
+      address,
+      company,
+      role,
+      bio,
+      communication,
+      handle,
+      events,
+      connections,
+    } = req.body;
 
     const record = await table
       .select({
@@ -62,6 +91,13 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
             address,
             email,
             name,
+            company,
+            role,
+            bio,
+            communication,
+            handle,
+            events,
+            connections,
           },
         },
       ]);

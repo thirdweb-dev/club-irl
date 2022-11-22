@@ -16,12 +16,12 @@ const cards = [
   {
     link: "/events",
     title: "View events",
-    icon: "/assets/icons/Calendar.svg",
+    icon: "/assets/icons/calendar.svg",
   },
   {
     link: "/profile",
     title: "Update profile",
-    icon: "/assets/icons/Cog.svg",
+    icon: "/assets/icons/cog.svg",
   },
 ];
 
@@ -40,27 +40,42 @@ const Members: React.FC = () => {
           Members area
         </Heading>
         <Text textAlign="center" fontSize="14px">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In id egestas
-          est. Fusce condimentum erat eget sollicitudin sollicitudin. Sed auctor
-          condimentum enim ut ultrices.
+          clubIRL is an invite only community for which brings together
+          founders, builders, and leaders from top global brands, hot startups,
+          and web3 innovators for IRL experiences.
+          <br />
+          <br />
+          clubIRL events will feature a series of global dinners and private
+          events that facilitate networking, collaboration and open discussions.
+          <br />
+          <br />
+          As a member you&apos;ll have access to a global schedule of exclusive
+          events as well as opportunities to influence the direction of clubIRL
+          and invite new members to join our club.
+          <br />
+          <br />
+          Check back here for updates on events, membership directory, and
+          private clubIRL channels.
         </Text>
         <Flex w="full" align="center" justify="space-between">
           {cards.map(({ title, link, icon }) => (
             <Link href={link} passHref key={title}>
               <VStack
                 mt="24px"
-                spacing="24px"
+                spacing="16px"
                 bg="rgba(0, 0, 0, 0.9)"
                 boxShadow="0px 0px 50px #8B38FF"
                 borderRadius="28px"
                 align="center"
                 justify="center"
-                w="175px"
-                h="175px"
-                cursor="pointer"
+                padding="10px"
+                height={{ base: "140px", md: "180px" }}
+                width={{ base: "140px", md: "180px" }}
               >
-                <Image src={icon} alt="calendar" w="60px" />
-                <Text>{title}</Text>
+                <Image src={icon} alt="calendar" w="50px" />
+                <Text width={{ base: "120px", md: "100%" }} textAlign="center">
+                  {title}
+                </Text>
               </VStack>
             </Link>
           ))}
@@ -75,7 +90,7 @@ const Members: React.FC = () => {
           borderRadius="28px"
           mt="24px"
           gap="24px"
-          h="220px"
+          padding="20px"
           p={6}
         >
           <Flex flexDir="column">
@@ -86,9 +101,10 @@ const Members: React.FC = () => {
               VIP PASS
             </Text>
             <Text fontSize={{ base: "14px", md: "16px" }}>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. In id
-              egestas est. Fusce condimentum erat eget sollicitudin
-              sollicitudin.
+              Your clubIRL pass will give you priority access to all clubIRL
+              events as well as other unique opportunities. Sometimes you
+              won&apos;t even need to register, just show your pass and skip the
+              line. More to come soon...
             </Text>
           </Flex>
           <Image src="/assets/icons/vip.svg" alt="calendar" w="100px" />
@@ -120,7 +136,6 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     "edition-drop"
   );
   const balance = await contract.balanceOf(user.address, 0);
-  console.log(balance.gt(0));
   const hasNft = balance.gt(0);
 
   if (!hasNft) {

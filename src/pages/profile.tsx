@@ -31,22 +31,29 @@ const Register = ({ user }: any) => {
 };
 
 export default Register;
-
 export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
   const user = await getUser(req);
 
   const record = await table
     .select({
-      fields: ["address", "email", "name"],
+      fields: [
+        "address",
+        "email",
+        "name",
+        "company",
+        "role",
+        "bio",
+        "communication",
+        "handle",
+      ],
       filterByFormula: `address = '${user?.address}'`,
     })
     .all();
 
   if (record.length === 0) {
     return {
-      redirect: {
-        destination: "/register",
-        permanent: false,
+      props: {
+        user: {},
       },
     };
   }
