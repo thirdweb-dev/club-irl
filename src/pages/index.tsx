@@ -1,6 +1,6 @@
 import { Nav } from "@/components/Header/Nav";
 import { ArrowsIcon } from "@/Icons";
-import { Box,  Flex, Link, Spinner, Text } from "@chakra-ui/react";
+import { Box, Flex, Link, Spinner, Text, Button } from "@chakra-ui/react";
 import {
   ConnectWallet,
   useAddress,
@@ -9,6 +9,7 @@ import {
   useLogin,
   useNFTBalance,
   useUser,
+  useLogout,
 } from "@thirdweb-dev/react";
 import type { NextPage } from "next";
 import Image from "next/image";
@@ -21,6 +22,7 @@ const Home: NextPage = () => {
     process.env.NEXT_PUBLIC_THIRDWEB_CONTRACT_ADDRESS || "",
     "edition-drop"
   );
+  const logout = useLogout();
   const { data: balance } = useNFTBalance(contract, user?.address, tokenId);
   const { data: ineligibility, isLoading } = useClaimIneligibilityReasons(
     contract,
@@ -110,6 +112,12 @@ const Home: NextPage = () => {
         ) : (
           <>
             <Text>No invite? Register here for future IRL events</Text>
+            <Link href="/register" textDecor="none !important" mt="8px">
+              <Button>Register</Button>
+            </Link>
+            <Button mt="8px" onClick={logout}>
+              Sign out
+            </Button>
           </>
         )}
       </Flex>

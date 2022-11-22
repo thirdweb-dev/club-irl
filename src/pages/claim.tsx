@@ -38,13 +38,12 @@ const Claim: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const { data: balance } = useNFTBalance(contract, address, "0");
   const router = useRouter();
-  const [amount, setAmount] = useState(1);
 
   const isMismatched = useNetworkMismatch();
   const [, switchNetwork] = useNetwork();
 
   const handleClaim = async () => {
-    if (address && contract && amount > 0) {
+    if (address && contract) {
       if (isMismatched) {
         // @ts-ignore
         return switchNetwork(ChainId.Goerli);
@@ -110,28 +109,6 @@ const Claim: React.FC = () => {
               md: "500px",
             }}
           >
-            <NumberInput
-              defaultValue={1}
-              min={1}
-              maxW="70px"
-              borderColor="#4B3678"
-            >
-              <NumberInputField
-                value={amount}
-                onChange={(e) => setAmount(parseInt(e.target.value))}
-              />
-              <NumberInputStepper borderColor="#4B3678">
-                <NumberIncrementStepper
-                  borderBottom="none"
-                  borderColor="#4B3678"
-                />
-                <NumberDecrementStepper
-                  borderTop="none"
-                  borderColor="#4B3678"
-                />
-              </NumberInputStepper>
-            </NumberInput>
-
             <Button
               gap="2"
               bg="transparent"

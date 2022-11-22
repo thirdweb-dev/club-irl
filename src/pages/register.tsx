@@ -51,9 +51,8 @@ const Register: NextPage = () => {
               Thanks
             </Heading>
             <Text textAlign="center" mt={2}>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. In id
-              egestas est. Fusce condimentum erat eget sollicitudin
-              sollicitudin. Sed auctor condimentum enim ut ultrices.
+              Your request has been succesfully submitted. We&apos;ll get back
+              to you on your provided method of communication
             </Text>
             <Image
               src="/assets/icons/vip.svg"
