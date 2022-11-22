@@ -15,14 +15,7 @@ export const Header: FC = () => {
   return (
     <Box w="100%" pos="absolute" top={0}>
       {balance?.gt(0) && <Nav />}
-      <Box
-        width="230px"
-        height="150px"
-        margin={{
-          base: "0 auto",
-          md: "60px",
-        }}
-      >
+      <Box width="230px" height="150px" margin="0 auto">
         <Link href="/">
           <Image
             src="/assets/logo.svg"
@@ -30,10 +23,7 @@ export const Header: FC = () => {
             width={230}
             height={150}
             objectFit="cover"
-            margin={{
-              base: "0 auto",
-              md: "60px",
-            }}
+            margin="0 auto"
           />
         </Link>
       </Box>
