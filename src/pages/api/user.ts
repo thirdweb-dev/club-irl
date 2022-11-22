@@ -83,6 +83,31 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       })
       .firstPage();
 
+    if (record.length === 0) {
+      try {
+        const createdRecord = await table.create([
+          {
+            fields: {
+              address,
+              email,
+              name,
+              company,
+              role,
+              bio,
+              communication,
+              handle,
+              events,
+              connections,
+            },
+          },
+        ]);
+        return res.status(200).json(createdRecord);
+      } catch (err) {
+        console.error(err);
+        return res.status(500).json({ error: (err as Error).message });
+      }
+    }
+
     try {
       const updatedRecord = await table.update([
         {
