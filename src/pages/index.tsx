@@ -1,18 +1,17 @@
 import { Nav } from "@/components/Header/Nav";
 import { ArrowsIcon } from "@/Icons";
-import { Box, Flex, Link, Spinner, Text, Button } from "@chakra-ui/react";
+import { Box, Button, Flex, Spinner, Text, VStack } from "@chakra-ui/react";
 import {
   ConnectWallet,
-  useAddress,
   useClaimIneligibilityReasons,
   useContract,
-  useLogin,
+  useLogout,
   useNFTBalance,
   useUser,
-  useLogout,
 } from "@thirdweb-dev/react";
 import type { NextPage } from "next";
 import Image from "next/image";
+import Link from "next/link";
 
 const tokenId = 0;
 
@@ -82,37 +81,46 @@ const Home: NextPage = () => {
         {!user ? (
           <ConnectWallet />
         ) : balance?.gt(0) ? (
-          <Link href="/members" textDecor="none !important">
-            <Text
-              background="linear-gradient(93.33deg, #F213A4 1.94%, #7A66FF 100%)"
-              backgroundClip="text"
-              color="transparent"
-              fontSize="lg"
-              fontWeight="500"
-              textAlign="center"
-            >
-              Enter
-            </Text>
-            <ArrowsIcon mt={2} />
+          <Link href="/members">
+            <VStack cursor='pointer'>
+              <Text
+                background="linear-gradient(93.33deg, #F213A4 1.94%, #7A66FF 100%)"
+                backgroundClip="text"
+                color="transparent"
+                fontSize="lg"
+                fontWeight="500"
+                textAlign="center"
+              >
+                Enter
+              </Text>
+              <ArrowsIcon mt={2} />
+            </VStack>
           </Link>
         ) : ineligibility?.length === 0 ? (
-          <Link href="/claim" textDecor="none !important">
-            <Text
-              background="linear-gradient(93.33deg, #F213A4 1.94%, #7A66FF 100%)"
-              backgroundClip="text"
-              color="transparent"
-              fontSize="lg"
-              fontWeight="500"
-              textAlign="center"
-            >
-              Enter
-            </Text>
-            <ArrowsIcon mt={2} />
+          <Link href="/claim">
+            <VStack cursor='pointer'>
+              <Text
+                background="linear-gradient(93.33deg, #F213A4 1.94%, #7A66FF 100%)"
+                backgroundClip="text"
+                color="transparent"
+                fontSize="lg"
+                fontWeight="500"
+                textAlign="center"
+              >
+                Enter
+              </Text>
+              <ArrowsIcon mt={2} />
+            </VStack>
           </Link>
         ) : (
           <>
             <Text>No invite? Register here for future IRL events</Text>
-            <Link href="/register" textDecor="none !important" mt="8px">
+            <Link
+              href="/register"
+              style={{
+                marginTop: "20px",
+              }}
+            >
               <Button>Register</Button>
             </Link>
             <Button mt="8px" onClick={logout}>

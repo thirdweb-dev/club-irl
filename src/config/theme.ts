@@ -1,4 +1,4 @@
-import { extendTheme, type ThemeConfig } from "@chakra-ui/react";
+ import { extendTheme, type ThemeConfig } from "@chakra-ui/react";
 
 const config: ThemeConfig = {
   initialColorMode: "dark",
@@ -6,7 +6,7 @@ const config: ThemeConfig = {
 };
 
 const activeLabelStyles = {
-  transform: "scale(0.85) translateY(-12px)",
+  transform: "scale(0.8) translateY(-14px)",
   fontSize: "14px",
 };
 
@@ -38,7 +38,7 @@ const theme = extendTheme({
               pointerEvents: "none",
               mx: 3,
               px: 1,
-              my: 5,
+              my: 6,
               transformOrigin: "left top",
               color: "#9A66FF",
               fontWeight: 700,
