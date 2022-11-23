@@ -204,7 +204,7 @@ export const Form: FC<IFormDataProps> = ({
           backgroundClip="text"
           textColor="transparent"
         >
-          Edit
+          Save
         </Text>
       </Button>
     </FormControl>

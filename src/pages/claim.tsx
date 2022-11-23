@@ -68,13 +68,7 @@ const Claim: React.FC = () => {
 
   return (
     <MainLayout>
-      <Flex
-        direction="column"
-        align="center"
-        h={{ base: "auto", md: "100vh" }}
-        w="100vw"
-        justify="center"
-      >
+      <Flex direction="column" align="center" w="100vw" justify="center">
         <VStack
           bg="rgba(0, 0, 0, 0.9)"
           filter="drop-shadow(0px 0px 50px #8B38FF)"
@@ -97,16 +91,16 @@ const Claim: React.FC = () => {
             Claim your membership
           </Heading>
           <Text textAlign="center">
-            You have been invited to join Club IRL. You can claim your
-            membership below. Once you’ve done that, you can login with your
-            wallet to access the private community.
+            You have been invited to join clubIRL. You can claim your membership
+            below. Once you’ve done that, you can login with your wallet to
+            access the private community.
           </Text>
           <ConnectWallet className="connect-wallet" />
           <Flex
             gap={4}
             w={{
               base: "300px",
-              md: "500px",
+              md: "250px",
             }}
           >
             <Button

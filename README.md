@@ -1,4 +1,4 @@
-# Club IRL
+# clubIRL
 
 ## Setting up
 

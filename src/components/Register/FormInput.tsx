@@ -38,7 +38,7 @@ export const FormInput: FC<IFormDataInput> = ({
         borderColor="#4B3678"
         borderRadius="9px"
         {...props}
-        py={6}
+        h={14}
         placeholder=""
         my="2 !important"
         {...register(id, {
@@ -46,6 +46,15 @@ export const FormInput: FC<IFormDataInput> = ({
             value: true,
             message: `${id} is required`,
           },
+          validate:
+            id === "email"
+              ? (value) => {
+                  if (value.includes("@")) {
+                    return true;
+                  }
+                  return `${id} is not valid`;
+                }
+              : undefined,
         })}
       />
       <FormLabel>{placeholder}</FormLabel>

@@ -61,6 +61,10 @@ const Members: React.FC = () => {
           {cards.map(({ title, link, icon }) => (
             <Link href={link} passHref key={title}>
               <VStack
+                _hover={{
+                  boxShadow:
+                    "0px 4px 10px rgba(0, 0, 0, 0.25), 0px 0px 15px rgba(255, 71, 191, 0.9)",
+                }}
                 mt="24px"
                 spacing="16px"
                 bg="rgba(0, 0, 0, 0.9)"
@@ -71,6 +75,7 @@ const Members: React.FC = () => {
                 padding="10px"
                 height={{ base: "140px", md: "180px" }}
                 width={{ base: "140px", md: "180px" }}
+                cursor="pointer"
               >
                 <Image src={icon} alt="calendar" w="50px" />
                 <Text width={{ base: "120px", md: "100%" }} textAlign="center">
@@ -82,6 +87,10 @@ const Members: React.FC = () => {
         </Flex>
 
         <Flex
+          _hover={{
+            boxShadow:
+              "0px 4px 10px rgba(0, 0, 0, 0.25), 0px 0px 15px rgba(255, 71, 191, 0.9)",
+          }}
           w="full"
           align="center"
           justify="space-between"
@@ -92,6 +101,7 @@ const Members: React.FC = () => {
           gap="24px"
           padding="20px"
           p={6}
+          cursor="pointer"
         >
           <Flex flexDir="column">
             <Text

@@ -38,7 +38,7 @@ const Register: NextPage = () => {
         w="full"
         align="center"
         justify="center"
-        h={{ base: "auto", md: "100vh" }}
+        h={{ base: "auto", md: "130vh" }}
       >
         {isSubmitted ? (
           <VStack maxW="442px">
