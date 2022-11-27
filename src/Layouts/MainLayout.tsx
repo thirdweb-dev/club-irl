@@ -16,7 +16,7 @@ const MainLayout: FC<IMainLayoutProps> = ({ children }) => {
       bgRepeat="no-repeat"
       bgPosition="center"
       flexDir="column"
-      py="200px"
+      py="240px"
     >
       <Header />
       {children}
