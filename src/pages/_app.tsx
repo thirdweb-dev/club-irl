@@ -7,7 +7,7 @@ import NextNProgress from "nextjs-progressbar";
 import { NextSeo } from "next-seo";
 
 // This is the chainId your dApp will work on.
-const activeChainId = ChainId.Goerli;
+const activeChainId = ChainId.Polygon;
 
 const seoData = {
   title: "clubIRL",
@@ -54,9 +54,8 @@ function MyApp({ Component, pageProps }: AppProps) {
           }}
           sdkOptions={{
             gasless: {
-              biconomy: {
-                apiId: process.env.NEXT_PUBLIC_BICONOMY_ID!,
-                apiKey: process.env.NEXT_PUBLIC_BICONOMY_KEY!,
+              openzeppelin: {
+                relayerUrl: process.env.NEXT_PUBLIC_OPENZEPPELIN_URL as string,
               },
             },
           }}

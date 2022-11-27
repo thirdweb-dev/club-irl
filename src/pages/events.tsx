@@ -126,7 +126,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
 
   const sdk = ThirdwebSDK.fromPrivateKey(
     process.env.THIRDWEB_PRIVATE_KEY || "",
-    "goerli"
+    "polygon"
   );
 
   const contract = await sdk.getEditionDrop(

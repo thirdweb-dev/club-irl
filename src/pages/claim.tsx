@@ -46,7 +46,7 @@ const Claim: React.FC = () => {
     if (address && contract) {
       if (isMismatched) {
         // @ts-ignore
-        return switchNetwork(ChainId.Goerli);
+        return switchNetwork(ChainId.Polygon);
       }
       setLoading(true);
       try {
@@ -141,7 +141,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
 
   const sdk = ThirdwebSDK.fromPrivateKey(
     process.env.THIRDWEB_PRIVATE_KEY || "",
-    "goerli"
+    "polygon"
   );
 
   const contract = await sdk.getContract(
