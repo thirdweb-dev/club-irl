@@ -20,7 +20,7 @@ export const Nav: FC = () => {
       <Link href="/members" passHref>
         <Flex align="center" gap={2} cursor="pointer">
           <UserIcon />
-          <Text>Membership</Text>
+          <Text>Members Area</Text>
         </Flex>
       </Link>
 
