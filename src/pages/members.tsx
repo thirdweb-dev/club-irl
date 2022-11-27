@@ -5,11 +5,12 @@ import {
   Image,
   Text,
   VStack,
+  Link,
 } from "@chakra-ui/react";
 import { ThirdwebSDK } from "@thirdweb-dev/sdk";
 import { GetServerSidePropsContext } from "next";
-import Link from "next/link";
 import { getUser } from "../../auth.config";
+import NextLink from "next/link";
 import MainLayout from "../Layouts/MainLayout";
 
 const cards = [
@@ -37,7 +38,7 @@ const Members: React.FC = () => {
           color="#FF84D4"
           textShadow="0px 4px 10px rgba(0, 0, 0, 0.25), 0px 0px 15px rgba(255, 71, 191, 0.9)"
         >
-          Members area
+          Members Area
         </Heading>
         <Text textAlign="center" fontSize="14px">
           clubIRL is an invite only community for web3 founders, builders, and
@@ -60,7 +61,7 @@ const Members: React.FC = () => {
         </Text>
         <Flex w="full" align="center" justify="space-between">
           {cards.map(({ title, link, icon }) => (
-            <Link href={link} passHref key={title}>
+            <NextLink href={link} passHref key={title}>
               <VStack
                 _hover={{
                   boxShadow:
@@ -83,43 +84,52 @@ const Members: React.FC = () => {
                   {title}
                 </Text>
               </VStack>
-            </Link>
+            </NextLink>
           ))}
         </Flex>
 
-        <Flex
-          _hover={{
-            boxShadow:
-              "0px 4px 10px rgba(0, 0, 0, 0.25), 0px 0px 15px rgba(255, 71, 191, 0.9)",
-          }}
-          w="full"
-          align="center"
-          justify="space-between"
-          bg="rgba(0, 0, 0, 0.9)"
-          boxShadow="0px 0px 50px #8B38FF"
-          borderRadius="28px"
-          mt="24px"
-          gap="24px"
-          padding="20px"
-          p={6}
-          cursor="pointer"
+        <Link
+          href={
+            process.env.NEXT_PUBLIC_OPENSEA_URL ||
+            "https://opensea.io/collection/clubirl"
+          }
+          isExternal
+          textDecor="none !important"
         >
-          <Flex flexDir="column">
-            <Text
-              color="#FF84D4"
-              textShadow="0px 4px 10px rgba(0, 0, 0, 0.25), 0px 0px 15px rgba(255, 71, 191, 0.9)"
-            >
-              VIP PASS
-            </Text>
-            <Text fontSize={{ base: "14px", md: "16px" }}>
-              Your clubIRL pass will give you priority access to all clubIRL
-              events as well as other unique opportunities. Sometimes you
-              won&apos;t even need to register, just show your pass and skip the
-              line. More to come soon...
-            </Text>
+          <Flex
+            _hover={{
+              boxShadow:
+                "0px 4px 10px rgba(0, 0, 0, 0.25), 0px 0px 15px rgba(255, 71, 191, 0.9)",
+            }}
+            w="full"
+            align="center"
+            justify="space-between"
+            bg="rgba(0, 0, 0, 0.9)"
+            boxShadow="0px 0px 50px #8B38FF"
+            borderRadius="28px"
+            mt="24px"
+            gap="24px"
+            padding="20px"
+            p={6}
+            cursor="pointer"
+          >
+            <Flex flexDir="column">
+              <Text
+                color="#FF84D4"
+                textShadow="0px 4px 10px rgba(0, 0, 0, 0.25), 0px 0px 15px rgba(255, 71, 191, 0.9)"
+              >
+                clubIRL Members Card
+              </Text>
+              <Text fontSize={{ base: "14px", md: "16px" }}>
+                Your clubIRL pass will give you priority access to all clubIRL
+                events as well as other unique opportunities. Sometimes you
+                won&apos;t even need to register, just show your pass and skip
+                the line. More to come soon...
+              </Text>
+            </Flex>
+            <Image src="/assets/icons/vip.svg" alt="calendar" w="100px" />
           </Flex>
-          <Image src="/assets/icons/vip.svg" alt="calendar" w="100px" />
-        </Flex>
+        </Link>
       </Container>
     </MainLayout>
   );
