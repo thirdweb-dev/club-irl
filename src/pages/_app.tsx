@@ -12,7 +12,7 @@ const activeChainId = ChainId.Polygon;
 const seoData = {
   title: "clubIRL",
   description:
-    "clubIRL is an invite only community for which brings together founders, builders, and leaders from top global brands, hot startups, and web3 innovators for IRL experiences.",
+    "clubIRL is an invite only community which brings together founders, builders, and leaders from top global brands, hot startups, and web3 innovators for IRL experiences.",
   url: "https://clubirl.com",
 };
 
