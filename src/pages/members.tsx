@@ -21,7 +21,7 @@ const cards = [
   },
   {
     link: "/profile",
-    title: "Update profile",
+    title: "Member profile",
     icon: "/assets/icons/Cog.svg",
   },
 ];

@@ -1,4 +1,4 @@
-import { Box, Image } from "@chakra-ui/react";
+import { Box, Image, Heading } from "@chakra-ui/react";
 import { useContract, useNFTBalance, useUser } from "@thirdweb-dev/react";
 import Link from "next/link";
 import type { FC } from "react";
@@ -26,6 +26,16 @@ export const Header: FC = () => {
             margin="0 auto"
           />
         </Link>
+        <Heading
+          size="xs"
+          mb="10px"
+          textAlign="center"
+          fontWeight="500"
+          color="#FFFFFF"
+          textShadow="0px 4px 10px rgba(0, 0, 0, 0.25), 0px 0px 15px rgba(139, 56, 255, 0.9)"
+        >
+          presented by thirdweb
+        </Heading>
       </Box>
     </Box>
   );
