@@ -7,6 +7,9 @@ import {
   Input,
   Select,
   FormLabel,
+  Checkbox,
+  CheckboxGroup,
+  Flex,
 } from "@chakra-ui/react";
 import axios from "axios";
 import { useRouter } from "next/router";
@@ -77,7 +80,11 @@ export const Form: FC<IFormDataProps> = ({
       >
         Edit profile
       </Heading>
-      <Text my="6 !important">Edit and update your profile for clubIRL</Text>
+      <Text my="6 !important">
+        Edit and update your profile for clubIRL. This will be used to update
+        you on future events and opportunties and connect you with relevant
+        executives (with your permission).
+      </Text>
       <FormInput
         placeholder="Your name:"
         register={register}
@@ -131,29 +138,6 @@ export const Form: FC<IFormDataProps> = ({
         )}
       </FormControl>
 
-      <FormControl variant="floating">
-        <Input
-          _focus={{
-            boxShadow: "0px 0px 10px 2px #9A66FF",
-            borderColor: "#9A66FF",
-            outline: "none",
-          }}
-          w="full"
-          outline="none"
-          border="1px solid"
-          borderColor="#4B3678"
-          borderRadius="9px"
-          py={6}
-          placeholder=""
-          my="2 !important"
-          {...register("handle")}
-        />
-        <FormLabel>{"Your handle (optional):"}</FormLabel>
-        {errors.handle?.message && (
-          <Text color="red.500">{errors.handle?.message}</Text>
-        )}
-      </FormControl>
-
       <FormControl variant="floating" isRequired>
         <Select
           _focus={{
@@ -186,6 +170,49 @@ export const Form: FC<IFormDataProps> = ({
           <Text color="red.500">{errors.communication?.message}</Text>
         )}
       </FormControl>
+
+      <FormControl variant="floating">
+        <Input
+          _focus={{
+            boxShadow: "0px 0px 10px 2px #9A66FF",
+            borderColor: "#9A66FF",
+            outline: "none",
+          }}
+          w="full"
+          outline="none"
+          border="1px solid"
+          borderColor="#4B3678"
+          borderRadius="9px"
+          py={6}
+          placeholder=""
+          my="2 !important"
+          {...register("handle")}
+        />
+        <FormLabel>{"Your handle (on selected platform):"}</FormLabel>
+        {errors.handle?.message && (
+          <Text color="red.500">{errors.handle?.message}</Text>
+        )}
+      </FormControl>
+
+      <Flex gap={5} my={5}>
+        <CheckboxGroup>
+          <Checkbox
+            size="lg"
+            colorScheme="purple"
+            borderColor="#9A66FF"
+            _checked={{
+              borderColor: "#9A66FF",
+            }}
+            {...register("shared_channel")}
+          />
+        </CheckboxGroup>
+        <Text fontSize="sm" textAlign="left">
+          Do you want to be added to the clubIRL shared communications channel?
+        </Text>
+      </Flex>
+      {errors.handle?.message && (
+        <Text color="red.500">{errors.handle?.message}</Text>
+      )}
 
       <Button
         _hover={{

@@ -31,6 +31,7 @@ const Register = ({ user }: any) => {
 };
 
 export default Register;
+
 export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
   const user = await getUser(req);
 
@@ -45,6 +46,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
         "bio",
         "communication",
         "handle",
+        "shared_channel",
       ],
       filterByFormula: `address = '${user?.address}'`,
     })

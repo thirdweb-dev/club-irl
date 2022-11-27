@@ -1,8 +1,15 @@
 import { table } from "@/utils/Airtable";
 import { Error } from "airtable";
+import { getUser } from "auth.config";
 import type { NextApiRequest, NextApiResponse } from "next";
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
+  const user = await getUser(req);
+
+  if (!user) {
+    return res.status(401).json({ error: "Unauthorized" });
+  }
+
   if (req.method === "POST") {
     const {
       email,
@@ -66,7 +73,6 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     const {
       email,
       name,
-      address,
       company,
       role,
       bio,
@@ -74,7 +80,10 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       handle,
       events,
       connections,
+      shared_channel,
     } = req.body;
+
+    const address = user.address;
 
     const record = await table
       .select({
@@ -98,6 +107,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
               handle,
               events,
               connections,
+              shared_channel,
             },
           },
         ]);
@@ -123,6 +133,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
             handle,
             events,
             connections,
+            shared_channel,
           },
         },
       ]);

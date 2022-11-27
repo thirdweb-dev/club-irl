@@ -10,6 +10,7 @@ import {
   FormLabel,
   Select,
   Textarea,
+  Link,
 } from "@chakra-ui/react";
 import axios from "axios";
 import { FC, useState } from "react";
@@ -200,29 +201,6 @@ export const Form: FC<IFormDataProps> = ({
         )}
       </FormControl>
 
-      <FormControl variant="floating">
-        <Input
-          _focus={{
-            boxShadow: "0px 0px 10px 2px #9A66FF",
-            borderColor: "#9A66FF",
-            outline: "none",
-          }}
-          w="full"
-          outline="none"
-          border="1px solid"
-          borderColor="#4B3678"
-          borderRadius="9px"
-          py={6}
-          placeholder=""
-          my="2 !important"
-          {...register("handle")}
-        />
-        <FormLabel>{"Your handle (optional):"}</FormLabel>
-        {errors.handle?.message && (
-          <Text color="red.500">{errors.handle?.message}</Text>
-        )}
-      </FormControl>
-
       <FormControl variant="floating" isRequired>
         <Select
           _focus={{
@@ -256,6 +234,29 @@ export const Form: FC<IFormDataProps> = ({
         )}
       </FormControl>
 
+      <FormControl variant="floating">
+        <Input
+          _focus={{
+            boxShadow: "0px 0px 10px 2px #9A66FF",
+            borderColor: "#9A66FF",
+            outline: "none",
+          }}
+          w="full"
+          outline="none"
+          border="1px solid"
+          borderColor="#4B3678"
+          borderRadius="9px"
+          py={6}
+          placeholder=""
+          my="2 !important"
+          {...register("handle")}
+        />
+        <FormLabel>{"Your handle (on selected platform):"}</FormLabel>
+        {errors.handle?.message && (
+          <Text color="red.500">{errors.handle?.message}</Text>
+        )}
+      </FormControl>
+
       <Flex gap={2}>
         <Checkbox
           colorScheme="purple"
@@ -271,7 +272,15 @@ export const Form: FC<IFormDataProps> = ({
           fontSize="14px"
           lineHeight="21px"
         >
-          I agree to the privacy policy
+          I agree to the{" "}
+          <Link
+            href="https://thirdweb.com/thirdweb_Privacy_Policy_May_2022.pdf"
+            textDecor="underline"
+            _hover={{ color: "white" }}
+            isExternal
+          >
+            privacy policy
+          </Link>
         </Text>
       </Flex>
       <Button

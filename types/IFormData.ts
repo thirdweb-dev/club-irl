@@ -9,6 +9,7 @@ interface IFormData {
   handle: string;
   events: string;
   connections: string;
+  shared_channel?: string;
 }
 
 // create a type with the same keys as IFormData

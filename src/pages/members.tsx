@@ -40,9 +40,10 @@ const Members: React.FC = () => {
           Members area
         </Heading>
         <Text textAlign="center" fontSize="14px">
-          clubIRL is an invite only community for which brings together
-          founders, builders, and leaders from top global brands, hot startups,
-          and web3 innovators for IRL experiences.
+          clubIRL is an invite only community for web3 founders, builders, and
+          leaders in the thirdweb ecosystem. Your clubIRL members card will give
+          you priority access to all clubIRL events as well as other unique IRL
+          utility and opportunities.
           <br />
           <br />
           clubIRL events will feature a series of global dinners and private
