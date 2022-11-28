@@ -93,7 +93,7 @@ const Claim: React.FC = () => {
           <Text textAlign="center">
             You have been invited to join clubIRL. You can claim your membership
             below. Once you’ve done that, you can login with your wallet to
-            access the private community.
+            access the Members Area.
           </Text>
           <ConnectWallet className="connect-wallet" />
           <Flex
