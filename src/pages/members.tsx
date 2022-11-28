@@ -91,7 +91,7 @@ const Members: React.FC = () => {
         <Link
           href={
             process.env.NEXT_PUBLIC_OPENSEA_URL ||
-            "https://opensea.io/collection/clubirl"
+            "https://opensea.io/collection/clubirl-member"
           }
           isExternal
           textDecor="none !important"
