@@ -16,12 +16,12 @@ import MainLayout from "../Layouts/MainLayout";
 const cards = [
   {
     link: "/events",
-    title: "View events",
+    title: "View Events",
     icon: "/assets/icons/Calendar.svg",
   },
   {
     link: "/profile",
-    title: "Member profile",
+    title: "Member Profile",
     icon: "/assets/icons/Cog.svg",
   },
 ];

@@ -35,9 +35,8 @@ const Members: React.FC = () => {
           Member Events
         </Heading>
         <Text textAlign="center" fontSize="14px">
-          Here&apos;s where you&apos;ll find all upcoming invite only events
-          that all members of clubIRL will have access to. We&apos;ll keep
-          adding events monthly so check back frequently!
+          Here&apos;s where you&apos;ll find upcoming clubIRL events. We&apos;ll
+          keep adding events monthly so check back frequently!
         </Text>
 
         <Flex
@@ -106,7 +105,7 @@ const Members: React.FC = () => {
           color="#FF84D4"
           textShadow="0px 4px 10px rgba(0, 0, 0, 0.25), 0px 0px 15px rgba(255, 71, 191, 0.9)"
         >
-          Dinner | Cocktails | Networking
+          Dinner | Conversation | Networking
         </Heading>
       </Container>
     </MainLayout>

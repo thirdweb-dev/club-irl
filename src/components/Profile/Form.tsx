@@ -78,7 +78,7 @@ export const Form: FC<IFormDataProps> = ({
         color="#FF84D4"
         textShadow="0px 4px 10px rgba(0, 0, 0, 0.25), 0px 0px 15px rgba(255, 71, 191, 0.9)"
       >
-        Edit profile
+        Edit Profile
       </Heading>
       <Text my="6 !important">
         Edit and update your profile for clubIRL. This will be used to update
