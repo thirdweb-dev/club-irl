@@ -98,6 +98,12 @@ export const Form: FC<IFormDataProps> = ({
         error={errors.email}
       />
       <FormInput
+        placeholder="City you are located in:"
+        register={register}
+        id="location_city"
+        error={errors.location_city}
+      />
+      <FormInput
         placeholder="Your company:"
         register={register}
         id="company"

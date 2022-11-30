@@ -1,6 +1,7 @@
 interface IFormData {
   name: string;
   email: string;
+  location_city: string;
   address: string;
   company: string;
   role: string;

@@ -22,6 +22,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       handle,
       events,
       connections,
+      location_city,
     } = req.body;
     const addressRecord = await table
       .select({
@@ -59,6 +60,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
             handle,
             events,
             connections,
+            location_city,
           },
         },
       ]);
@@ -81,6 +83,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       events,
       connections,
       shared_channel,
+      location_city,
     } = req.body;
 
     const address = user.address;
@@ -108,6 +111,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
               events,
               connections,
               shared_channel,
+              location_city,
             },
           },
         ]);
@@ -134,6 +138,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
             events,
             connections,
             shared_channel,
+            location_city,
           },
         },
       ]);

@@ -47,6 +47,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
         "communication",
         "handle",
         "shared_channel",
+        "location_city",
       ],
       filterByFormula: `address = '${user?.address}'`,
     })
