@@ -1,9 +1,37 @@
 [
   {
-    "name": "clubIRL exec dinner @ art basel",
-    "location": "Area 31 @ the Epic Hotel",
-    "image": "https://www.miamiandbeaches.com/getmedia/e48d9a05-1686-48f3-ba9f-339f13d9cf3c/shutterstock_449408050-2_Ocean_Drive_neon_1440x900.jpg.aspx?width=480&height=300&ext=.jpg",
-    "date": "Nov 30, 2022 - 7:00 PM to 10:00 PM",
-    "link": "https://lu.ma/clubirl-basel-22"
+    "name": "clubIRL Miami Roundtable",
+    "location": "",
+    "image": "/assets/events/miami-jan-2023.png",
+    "date": "Jan 12, 2023 - 7PM",
+    "link": "https://lu.ma/clubirl-miami-jan23"
+  },
+  {
+    "name": "clubIRL SF Edition",
+    "location": "",
+    "image": "/assets/events/sf-jan-2023.png",
+    "date": "Jan 26, 2023 - 7PM",
+    "link": "https://lu.ma/clubirl-sf-jan23"
+  },
+  {
+    "name": "clubIRL @ Venice Beach",
+    "location": "",
+    "image": "/assets/events/venice-beach-feb-2023.png",
+    "date": "Feb 2, 2023 - 7PM",
+    "link": "https://lu.ma/clubirl-venicebeach-jan23"
+  },
+  {
+    "name": "clubIRL Brooklyn Edition",
+    "location": "",
+    "image": "/assets/events/brooklyn-feb-2023.png",
+    "date": "Feb 16, 2023 - 7PM",
+    "link": "https://lu.ma/clubirl-brooklyn-feb23"
+  },
+  {
+    "name": "clubIRL @ ETHDenver",
+    "location": "",
+    "image": "/assets/events/denver-mar-2023.png",
+    "date": "Mar 3, 2023 - 7:30PM",
+    "link": "https://lu.ma/clubirl-ethdenver23"
   }
 ]

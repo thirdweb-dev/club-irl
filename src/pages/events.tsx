@@ -70,6 +70,7 @@ const Members: React.FC = () => {
                   borderColor: "#333",
                 }}
                 h="370px"
+                maxW="400px"
               >
                 <Image
                   src={event.image}
