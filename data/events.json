@@ -1,37 +1,23 @@
 [
   {
-    "name": "clubIRL Miami Roundtable",
-    "location": "",
-    "image": "/assets/events/miami-jan-2023.png",
-    "date": "Jan 12, 2023 - 7PM",
-    "link": "https://lu.ma/clubirl-miami-jan23"
-  },
-  {
-    "name": "clubIRL SF Edition",
-    "location": "",
-    "image": "/assets/events/sf-jan-2023.png",
-    "date": "Jan 26, 2023 - 7PM",
-    "link": "https://lu.ma/clubirl-sf-jan23"
-  },
-  {
     "name": "clubIRL @ Venice Beach",
     "location": "",
     "image": "/assets/events/venice-beach-feb-2023.png",
-    "date": "Feb 2, 2023 - 7PM",
+    "date": "Mar 15, 2023 - 7PM",
     "link": "https://lu.ma/clubirl-venicebeach-jan23"
   },
   {
     "name": "clubIRL Brooklyn Edition",
     "location": "",
     "image": "/assets/events/brooklyn-feb-2023.png",
-    "date": "Feb 16, 2023 - 7PM",
+    "date": "Apr 13, 2023 - 7PM",
     "link": "https://lu.ma/clubirl-brooklyn-feb23"
   },
   {
     "name": "clubIRL @ ETHDenver",
     "location": "",
     "image": "/assets/events/denver-mar-2023.png",
-    "date": "Mar 3, 2023 - 7:30PM",
+    "date": "Mar 2, 2023 - 7PM",
     "link": "https://lu.ma/clubirl-ethdenver23"
   }
 ]
